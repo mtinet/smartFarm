@@ -4,9 +4,7 @@
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
 
 ## 세팅
-### Raspberry Pi Pico W 세팅
-
-### Firebase 세팅
+### 1.Firebase 세팅
 1. 아래 링크로 이동해서 구글 계정으로 로그인을 하고, 오른쪽 상단에 있는 '콘솔로 이동' 버튼을 눌러 Firebase 콘솔로 들어간다.  
 [https://firebase.google.com/](https://firebase.google.com/)  
 ![image](https://user-images.githubusercontent.com/13882302/210128421-231a463e-c585-4814-8544-16eb70728961.png)
@@ -65,9 +63,11 @@
 <img width="287" alt="화면 캡처 2022-12-31 155119" src="https://user-images.githubusercontent.com/13882302/210128094-0829b06a-c575-4ba5-8ef4-2df90652cc8b.png">  
  
 
-### Web(github pages) 세팅
+### 2. Web(github pages) 세팅
 * 테스트 링크 
 [https://mtinet.github.io/smartFarm/web/public/index.html  ](https://mtinet.github.io/smartFarm/web/public/index.html)  
+
+### 3. Raspberry Pi Pico W 세팅
 
 ## 세그먼트 간 통신 테스트 영상
 ### Web - Firebase
