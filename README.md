@@ -10,6 +10,7 @@
 ![2](https://user-images.githubusercontent.com/13882302/210129908-b2e48b08-0a86-4980-ba4a-a07fab87f81c.png)
 
 ---
+---
 ## 각 세그먼트의 특징
 
 ### 1. Firebase  
@@ -57,11 +58,13 @@
 * 
 
 ---
+---
 ## 세그먼트 간 통신 테스트 영상
 
 ### Web - Firebase
 https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
 
+---
 ---
 ## 세팅
 
