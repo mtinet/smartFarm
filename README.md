@@ -1,5 +1,6 @@
 # smartFarm
 
+---
 ## 구조
 
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
