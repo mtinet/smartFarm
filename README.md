@@ -1,7 +1,7 @@
 # smartFarm
 
 ## 구조
----
+
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
 ---
 #### 1. Firebase의 활용방법  
@@ -13,7 +13,7 @@
 
 ---
 ## 각 세그먼트의 특징
----
+
 ### 1. Firebase  
 #### 1. Firebase는 구글에서 운영하는 인터넷 관련 BaaS서비스라고 볼 수 있다. BaaS에 대한 정의는 [링크](https://blog.back4app.com/ko/%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%98%95-%EB%B0%B1%EC%95%A4%EB%93%9Cbackend-as-a-service-baas%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94/)를 참고한다. 각 온라인 서비스 프로바이더의 분류는 아래 그림을 참고하면 된다.  
 ![image](https://user-images.githubusercontent.com/13882302/210130588-caaa4759-b32e-4526-aed5-e8b5cd149a70.png)  
@@ -60,13 +60,13 @@
 
 ---
 ## 세그먼트 간 통신 테스트 영상
----
+
 ### Web - Firebase
 https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
 
 ---
 ## 세팅
----
+
 ### 1.Firebase 세팅
 #### 1. 아래 링크로 이동해서 구글 계정으로 로그인을 하고, 오른쪽 상단에 있는 '콘솔로 이동' 버튼을 눌러 Firebase 콘솔로 들어간다.  
 [https://firebase.google.com/](https://firebase.google.com/)  
