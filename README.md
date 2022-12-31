@@ -3,6 +3,7 @@
 ## 구조
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
 
+---
 ## 세팅
 ### 1.Firebase 세팅
 1. 아래 링크로 이동해서 구글 계정으로 로그인을 하고, 오른쪽 상단에 있는 '콘솔로 이동' 버튼을 눌러 Firebase 콘솔로 들어간다.  
@@ -69,6 +70,7 @@
 
 ### 3. Raspberry Pi Pico W 세팅
 
+---
 ## 세그먼트 간 통신 테스트 영상
 ### Web - Firebase
 https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
