@@ -191,7 +191,7 @@ var gauge3 = Gauge(
 (function loop() {
 // 랜덤으로 값을 발생시켜 게이지의 동작을 테스트 할 때 사용
 //  var value1 = Math.random() * 100,
-//      value2 = Math.random() * 100,
+//      value2 = Math.random() * 50,
 //      value3 = Math.random() * 100;
 
 // Firebase Realtime Database로부터 넘어온 값을 각 게이지의 값에 넣어줌
