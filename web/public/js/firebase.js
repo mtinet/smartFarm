@@ -132,6 +132,7 @@ function fanOnOff() {
 }
 
 // Firebase의 Realtime Database에 저장되어 있는 조도(light), 온도(temp), 습도(humi) 정보를 가져와서 게이지 1, 2, 3에 뿌려서 표현하게 함, Firebase의 정보가 업데이트 되면 실시간으로 게이지가 변함
+// 받아온 값의 수치에 따라서 초록-노랑-주황-빨강으로 게이지의 색깔이 변하게 세팅되어 있으므로, 색깔을 보고 수동으로 led와 fan을 조정하여 식물에 적용되는 환경을 조정할 수 있음
 // 게이지 1은 조도를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
 var gauge1 = Gauge(
   document.getElementById("gauge1"),
@@ -140,13 +141,13 @@ var gauge1 = Gauge(
     value: 0,
     color: function(value) {
       if(value < 20) {
-        return "#5ee432";
+        return "#5ee432"; // 초록
       }else if(value < 40) {
-        return "#fffa50";
+        return "#fffa50"; // 노랑
       }else if(value < 60) {
-        return "#f7aa38";
+        return "#f7aa38"; // 주황
       }else {
-        return "#ef4655";
+        return "#ef4655"; // 빨강
       }
     }
   }
@@ -160,13 +161,13 @@ var gauge2 = Gauge(
     value: 0,
     color: function(value) {
       if(value < 10) {
-        return "#5ee432";
+        return "#5ee432"; // 초록
       }else if(value < 20) {
-        return "#fffa50";
+        return "#fffa50"; // 노랑
       }else if(value < 30) {
-        return "#f7aa38";
+        return "#f7aa38"; // 주황
       }else {
-        return "#ef4655";
+        return "#ef4655"; // 빨강
       }
     }
   }
@@ -179,13 +180,13 @@ var gauge3 = Gauge(
     value: 0,
     color: function(value) {
       if(value < 20) {
-        return "#5ee432";
+        return "#5ee432"; // 초록
       }else if(value < 40) {
-        return "#fffa50";
+        return "#fffa50"; // 노랑
       }else if(value < 60) {
-        return "#f7aa38";
+        return "#f7aa38"; // 주황
       }else {
-        return "#ef4655";
+        return "#ef4655"; // 빨강
       }
     }
   }
