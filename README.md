@@ -48,6 +48,7 @@
 12. false로 기본 설정되어 있는데, 이곳을 클릭하여 true로 바꿔주고 '게시'버튼을 누르면 누구나 접근해서 데이터를 읽고 쓸 수 있다. 추후 보안 및 트래픽에 따른 결제비용 증가에 영향을 줄 수 있으니, 테스트 할 때만 true로 설정하고, 실제 사용할 때는 읽고 쓰는 권한을 false로 바꾸고 접근한 사람의 사용자 권한에 따라 사용하거나, 엑세스 토큰을 부여받아 사용할 수 있도록 해야한다.  
 ![image](https://user-images.githubusercontent.com/13882302/210128717-727f05cb-7f26-4512-ad64-05fe50a9a7c5.png)  
 
+13. 다음으로 이 Realtime Database를 실제로 사용하기 위해서 관련 config 내용을 얻어야 한다. 프로젝트 개요-기어 버튼-프로젝트 설정으로 가서 내 웹앱에 firebase를 추가하는 버튼을 눌러 세팅을 완료하고, config 정보를 얻어낸다. 한 번 세팅을 완료하면 세팅을 삭제하기 전까지는 계속 해당 config를 사용할 수 있다.    
 ![image](https://user-images.githubusercontent.com/13882302/210128316-0838da1d-557a-4972-86e5-7b5654286696.png)  
 
 <img width="573" alt="210127985-4958b729-b8d9-4291-88dd-9501b94bfc01" src="https://user-images.githubusercontent.com/13882302/210128211-9489a97d-d658-4298-b674-a54d5a44e023.png">  
