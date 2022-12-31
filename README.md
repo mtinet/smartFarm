@@ -44,7 +44,12 @@
 #### 1. Raspberry Pi Pico W는 아두이노 우노에 대응하는 라즈베리파이 재단의 피지컬 컴퓨팅 도구인 라즈베리파이 피코의 와이파이 버전이다.  
 #### 2. 파이썬을 활용하므로 프로그래밍과 관련 생태계에 쉽게 접근이 가능하다.  
 #### 3. 우리가 스마트팜 프로젝트에서 Raspberry Pi Pico W를 사용하는 이유는 다음과 같다.
-* 첫째, 
+* 첫째, 다른 라즈베리파이가 라즈비안이라는 리눅스 OS를 사용하는 컴퓨터(MPU, 마이크로 프로세서 유닛을 사용하는)인 반면에 피코는 펌웨어(파이썬 펌웨어, 자바스크립트 펌웨어 등)를 올려서 주로 피지컬 컴퓨팅용으로 사용하는 장비(MCU, 마이크로 컨트롤러를 사용하는)이다. 이는 아두이노 우노와 같은 반복적인 일을 하는데 최적화 되어 있음을 의미한다.
+* 둘째, 아두이노 우노와의 차이점은 아두이노 우노의 경우 C, C++을 사용하므로 가볍게 사용할 수 있지만, 사용 언어가 요즘 세대에게 익숙하지 않다는 점이 있는데 반해 라즈베리파이 피코의 경우 어떤 펌웨어를 업로드 하느냐에 따라 마이크로 파이썬이나 자바스크립트 등을 선택해서 사용할 수 있고, 상대적으로 고급 언어를 사용할 수 있다는 점이 장점이다.
+* 셋째, 마이크로 파이썬을 사용할 경우 [https://micropython.org/download/rp2-pico/](https://micropython.org/download/rp2-pico/) 링크에서 최신 버전을 다운로드 받은 다음 피코에 업로드 하면 된다. 업로드는 피코의 Bootsel 버튼을 누른 상태에서 컴퓨터에 USB케이블을 꽂으면 피코가 외장 디스크로 인식이 되고, 내 컴퓨터에서 다운로드 받은 펌웨어 파일을 업로드 하기만 하면 된다.
+* 넷째, 
+
+
 * 블루투스를 이용한 스마트팜은 근거리에서만 활용이 가능하며 진정한 의미의 IoT라고 볼 수 없다.  
 * 
 
@@ -117,11 +122,20 @@ https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-
 * Firebase 사용 요금제는 아래 링크를 참고하면 되며, 테스트 용도로는 비용이 따로 들지 않는다고 봐도 무방하다.  
 [https://firebase.google.com/pricing?authuser=0&hl=ko](https://firebase.google.com/pricing?authuser=0&hl=ko)  
 
-### 2. Web(github pages) 세팅
-* 테스트 링크 
+### 2. Web(github pages) 세팅  
+* 테스트 링크  
 [https://mtinet.github.io/smartFarm/web/public/index.html  ](https://mtinet.github.io/smartFarm/web/public/index.html)  
 
-### 3. Raspberry Pi Pico W 세팅
-
-
+### 3. Raspberry Pi Pico W 세팅  
+#### 1. 개발 IDE로는 [Thonny](https://thonny.org/)를 사용한다.  
+#### 2. Thonny 설치 후 Run-Configure Interpreter-Interpreter에서 'MicroPython (Raspberry Pi Pico)'를 선택하고 연결된 Port를 선택해야 피코에 마이크로파이썬을 사용해 프로그래밍을 하여 업로드 할 수 있다.  
+![image](https://user-images.githubusercontent.com/13882302/210135043-75644b64-9b10-489a-9523-ae6fa1667efd.png)  
+![image](https://user-images.githubusercontent.com/13882302/210135032-d438b8ef-6839-4e84-9a85-aebbaae9cbf3.png)  
+#### 3. 왼쪽 상단은 내 컴퓨터의 폴더와 파일, 왼쪽 하단은 피코 내부 메모리의 폴더와 파일, 가운데는 프로그래밍 공간, 가운데 하단은 파이썬 상태 체크용 콘솔이 위치한다.  
+![image](https://user-images.githubusercontent.com/13882302/210135102-345c65c7-58d0-4f7f-903e-b7e60219e70c.png)  
+#### 4. 위쪽의 플레이 버튼과 정지 버튼을 통해 코드를 실행하고 멈춘다.  
+#### 5. 코드의 저장은 내 컴퓨터에도 할 수 있고, 피코에도 할 수 있도록 선택해서 저장하고, 서로 업로드 다운로드가 된다.  
+#### 5. 피코에 업로드 한 코드를 선택하고, 플레이 버튼을 누르면 피코 파이썬 펌웨어가 연산한 결과를 콘솔에 보여주게 된다.  
+#### 6. 기본적으로 라이브러리를 설치해서 사용할 수는 있으나 피코의 저장 가능 용량이 800kB밖에 안되서 용량이 큰 라이브러리는 사용할 수 없다.  
+#### 7. 따라서 Firebase 인증 토큰을 발급받는데 사용하는 라이브러리를 쓸 수 없고, Firebase RTDB의 규칙을 false로 해 놓을 경우 토큰을 통한 쓰기, 읽기 권한을 획득할 방법이 없어 규칙을 항상 true로 해놓고 사용해야 하는 불편함이 있다. 추후 피코의 내부 메모리 용량이 늘어난 제품이 나오면 해결될 문제로 보인다.  
 
