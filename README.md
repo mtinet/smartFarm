@@ -30,6 +30,24 @@
 6. Firebase 메뉴중에서 빌드-Realtime Database를 선택해서 연다.  
 <img width="389" alt="화면 캡처 2022-12-31 160136" src="https://user-images.githubusercontent.com/13882302/210128358-d1045b3f-98d1-495c-b4fa-29fab188e25a.png">  
 
+7. '데이터베이스 만들기' 버튼을 누른다.  
+![image](https://user-images.githubusercontent.com/13882302/210128622-b9bf441c-b07c-449c-9633-b638d744f179.png)  
+
+8. 서버 위치를 선택한다.  
+![image](https://user-images.githubusercontent.com/13882302/210128633-124bfef0-5edc-4214-a111-eea07e291ea1.png)  
+
+9. 데이터베이스 기본 설정을 한다. 추후 언제나 바꿀 수 있으니 기본 세팅으로 사용설정을 한다.  
+![image](https://user-images.githubusercontent.com/13882302/210128658-8eaa6130-0875-4517-b8a0-1c34824340b9.png)  
+
+10. 가운데 있는 링크를 통해 Realtime Database에 접근을 할 수 있다.  
+![image](https://user-images.githubusercontent.com/13882302/210128672-ce1602e5-535c-4db1-80e0-77c6f38a5e5e.png)  
+
+11. '규칙' 탭으로 들어오면 데이터베이스에 대한 읽기, 쓰기 권한이 설정되어 있는데, 이 설정이 매우 중요하다.  
+![image](https://user-images.githubusercontent.com/13882302/210128700-f12252c9-6de3-4c2b-a0e2-feb2801dc9b2.png)  
+
+12. false로 기본 설정되어 있는데, 이곳을 클릭하여 true로 바꿔주고 '게시'버튼을 누르면 누구나 접근해서 데이터를 읽고 쓸 수 있다. 추후 보안 및 트래픽에 따른 결제비용 증가에 영향을 줄 수 있으니, 테스트 할 때만 true로 설정하고, 실제 사용할 때는 읽고 쓰는 권한을 false로 바꾸고 접근한 사람의 사용자 권한에 따라 사용하거나, 엑세스 토큰을 부여받아 사용할 수 있도록 해야한다.  
+![image](https://user-images.githubusercontent.com/13882302/210128717-727f05cb-7f26-4512-ad64-05fe50a9a7c5.png)  
+
 ![image](https://user-images.githubusercontent.com/13882302/210128316-0838da1d-557a-4972-86e5-7b5654286696.png)  
 
 <img width="573" alt="210127985-4958b729-b8d9-4291-88dd-9501b94bfc01" src="https://user-images.githubusercontent.com/13882302/210128211-9489a97d-d658-4298-b674-a54d5a44e023.png">  
