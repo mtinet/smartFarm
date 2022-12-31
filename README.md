@@ -61,15 +61,15 @@
 ---
 ## 세그먼트 간 통신 테스트 영상
 
-### Web - Firebase
-https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
-
 ### Raspberry Pi Pico - Firebase - Web(P5js, Android WebViewer)
 ![KakaoTalk_20221231_232533880](https://user-images.githubusercontent.com/13882302/210140143-d5ca20ad-de6f-42fe-abd1-65e3b9ef64f6.jpg)
 
+https://user-images.githubusercontent.com/13882302/210140386-bab783f3-679c-4fcc-b290-30dfc66772a5.mp4
 
 https://user-images.githubusercontent.com/13882302/210140155-ee734c63-912c-4e5b-bcce-88c0e8243900.mp4
 
+### Web - Firebase
+https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
 
 
 ---
