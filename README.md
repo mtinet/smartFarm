@@ -68,7 +68,9 @@ https://user-images.githubusercontent.com/13882302/210140386-bab783f3-679c-4fcc-
 
 #### 2. P5js, Github Pages, Android App으로 각각 접속하여 제어하는 테스트  
 ![KakaoTalk_20221231_232533880](https://user-images.githubusercontent.com/13882302/210140143-d5ca20ad-de6f-42fe-abd1-65e3b9ef64f6.jpg)  
-https://user-images.githubusercontent.com/13882302/210140155-ee734c63-912c-4e5b-bcce-88c0e8243900.mp4
+
+https://user-images.githubusercontent.com/13882302/210140493-0b8662fb-a42f-4213-8c14-396c90b694e9.mp4
+
 
 ### Web - Firebase
 https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
