@@ -6,7 +6,7 @@ let fanStatus = Boolean(false);
 let ledStatus = Boolean(false);
 
 // firebase를 javascript로 사용하기 위한 config  
-// firebase 콘솔-프로젝트 개요-기어표시 클릭-프로젝트 설정-일반-내앱-앱 추가-firebaseConfig 안의 내용만 복사해서 붙여넣음  
+// firebase 콘솔-프로젝트 개요-기어표시 클릭-프로젝트 설정-일반-내앱-앱 추가(세번 째 웹앱버튼을 눌러 추가)-생성되는 firebaseConfig 안의 내용만 복사해서 붙여넣음  
 var config = {
   apiKey: "AIzaSyA4JNrHtS9pc6QaW8dtwATWhUhs0Ni8OBI",
   authDomain: "smartfarm-f867f.firebaseapp.com",
