@@ -62,10 +62,12 @@
 ## 세그먼트 간 통신 테스트 영상
 
 ### Raspberry Pi Pico - Firebase - Web(P5js, Android WebViewer)
-![KakaoTalk_20221231_232533880](https://user-images.githubusercontent.com/13882302/210140143-d5ca20ad-de6f-42fe-abd1-65e3b9ef64f6.jpg)
 
+#### 1. 웹페이지를 Github Pages에 올려 구동을 한 후 Firebase와 통신이 잘되는지 테스트  
 https://user-images.githubusercontent.com/13882302/210140386-bab783f3-679c-4fcc-b290-30dfc66772a5.mp4
 
+#### 2. P5js, Github Pages, Android App으로 각각 접속하여 제어하는 테스트  
+![KakaoTalk_20221231_232533880](https://user-images.githubusercontent.com/13882302/210140143-d5ca20ad-de6f-42fe-abd1-65e3b9ef64f6.jpg)  
 https://user-images.githubusercontent.com/13882302/210140155-ee734c63-912c-4e5b-bcce-88c0e8243900.mp4
 
 ### Web - Firebase
