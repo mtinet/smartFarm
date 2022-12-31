@@ -132,6 +132,7 @@ function fanOnOff() {
 }
 
 // Firebase의 Realtime Database에 저장되어 있는 조도(light), 온도(temp), 습도(humi) 정보를 가져와서 게이지 1, 2, 3에 뿌려서 표현하게 함, Firebase의 정보가 업데이트 되면 실시간으로 게이지가 변함
+// 게이지 1은 조도를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
 var gauge1 = Gauge(
   document.getElementById("gauge1"),
   {
@@ -150,6 +151,8 @@ var gauge1 = Gauge(
     }
   }
 );
+
+// 게이지 2는 온도를 나타내도록 세팅되었으므로 최대값을 50으로 지정함
 var gauge2 = Gauge(
   document.getElementById("gauge2"),
   {
@@ -168,6 +171,7 @@ var gauge2 = Gauge(
     }
   }
 );
+// 게이지 3은 습도를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
 var gauge3 = Gauge(
   document.getElementById("gauge3"),
   {
@@ -191,7 +195,7 @@ var gauge3 = Gauge(
 (function loop() {
 // 랜덤으로 값을 발생시켜 게이지의 동작을 테스트 할 때 사용
 //  var value1 = Math.random() * 100,
-//      value2 = Math.random() * 50,
+//      value2 = Math.random() * 50, //온도 최대값은 50으로 조정되어 있으므로, 테스트도 0~50의 값으로 테스트 함
 //      value3 = Math.random() * 100;
 
 // Firebase Realtime Database로부터 넘어온 값을 각 게이지의 값에 넣어줌
