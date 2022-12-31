@@ -11,7 +11,7 @@
 --- 
 ## 각 세그먼트의 특징
 ### 1. Firebase  
-#### 1. Firebase는 구글에서 운영하는 인터넷 관련 BaaS서비스라고 볼 수 있다. BaaS에 대한 정의는 [링크]([https://blog.back4app.com/iaas-paas-baas-provider-list/](https://blog.back4app.com/ko/%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%98%95-%EB%B0%B1%EC%95%A4%EB%93%9Cbackend-as-a-service-baas%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94/))를 참고한다. 각 온라인 서비스 프로바이더의 분류는 아래 그림을 참고하면 된다.  
+#### 1. Firebase는 구글에서 운영하는 인터넷 관련 BaaS서비스라고 볼 수 있다. BaaS에 대한 정의는 [링크](https://blog.back4app.com/ko/%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%98%95-%EB%B0%B1%EC%95%A4%EB%93%9Cbackend-as-a-service-baas%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94/))를 참고한다. 각 온라인 서비스 프로바이더의 분류는 아래 그림을 참고하면 된다.  
 ![image](https://user-images.githubusercontent.com/13882302/210130588-caaa4759-b32e-4526-aed5-e8b5cd149a70.png)  
 
 #### 2. 우리가 스마트팜 프로젝트에서 Firebase를 사용하는 그 이유는 다음과 같다.  
