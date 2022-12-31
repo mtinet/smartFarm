@@ -2,7 +2,10 @@
 
 ## 구조
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
-![1](https://user-images.githubusercontent.com/13882302/210129906-76bc322a-fb4e-4375-8104-6a515bfeb861.png)
+1. Firebase의 활용방법  
+![1](https://user-images.githubusercontent.com/13882302/210129906-76bc322a-fb4e-4375-8104-6a515bfeb861.png)  
+
+2. 본 smartFarm의 운용 구조  
 ![2](https://user-images.githubusercontent.com/13882302/210129908-b2e48b08-0a86-4980-ba4a-a07fab87f81c.png)
 
 ---
