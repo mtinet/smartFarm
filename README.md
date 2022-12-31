@@ -1,15 +1,21 @@
 # smartFarm
 
 ## 구조
+---
+---
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
+---
 #### 1. Firebase의 활용방법  
 ![1](https://user-images.githubusercontent.com/13882302/210129906-76bc322a-fb4e-4375-8104-6a515bfeb861.png)  
 
+---
 #### 2. 본 smartFarm의 운용 구조  
 ![2](https://user-images.githubusercontent.com/13882302/210129908-b2e48b08-0a86-4980-ba4a-a07fab87f81c.png)
 
 --- 
+---
 ## 각 세그먼트의 특징
+---
 ### 1. Firebase  
 #### 1. Firebase는 구글에서 운영하는 인터넷 관련 BaaS서비스라고 볼 수 있다. BaaS에 대한 정의는 [링크](https://blog.back4app.com/ko/%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%98%95-%EB%B0%B1%EC%95%A4%EB%93%9Cbackend-as-a-service-baas%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94/)를 참고한다. 각 온라인 서비스 프로바이더의 분류는 아래 그림을 참고하면 된다.  
 ![image](https://user-images.githubusercontent.com/13882302/210130588-caaa4759-b32e-4526-aed5-e8b5cd149a70.png)  
@@ -27,7 +33,7 @@
 * 어쨌든 사람들이 해당 서비스를 사용하고, 그 서비스를 이용해 부가가치를 만들어내야 자신들도 먹고 살 수 있음을 잘 알고 있는 것이고, 그런 사람들이 많으면 많을수록 좋으니 이렇게 제공되는 기본 서비스들을 통해서 우리 같은 초보개발자들이 마음 놓고 테스트를 진행해볼 수 있다는 것이다. 
 * 이는 오픈소스 진영의 라이프사이클이 잘 돌아가고 있고, 그 안에 있는 사람들이 아직 건재하게 생존해 있다는 것으로 증명된 사실이며, 사실 구글도 그런 문화를 통해 성장해왔으니, 그런 서비스를 통해 자신들의 생태계를 더욱 확장하는 방법을 알고 있는 것은 어찌보면 매우 당연한 일이다.
 
-
+---
 ### 2. Github Pages  
 #### 1. Github는 전세계 코더들의 자료 저장소이며, 자신의 프로젝트들을 관리하고 공유할 수 있도록 서비스를 제공하고 있다. 
 #### 2. Github Pages는 HTML, CSS, JavaScript로 대변되는 정적 웹페이지에 대한 서비스를 무료로 제공하고 있다. 정적 웹페이지는 서버측에서 클라이언트의 특정한 요청에 대해 프로세스를 진행하고 그 결과물을 제공해주는 동적웹페이지(WAS서버, 데이터베이스, 로그인 기능 등이 추가됨)와 달리 단순히 웹페이지만 제공한다.
@@ -40,6 +46,7 @@
 * 여섯째, 일단 웹페이지로 구현된 것은 WebViewer라는 기능을 통해 쉽게 앱으로도 구현할 수 있다.  
 * 일곱째, 부수적으로 [W3Schools](https://www.w3schools.com/)등의 사이트를 Github와 함께 활용함으로써 웹을 이용한 서비스를 구축하는 다양한 방법들을 공부하고, 관련 역량을 키워나갈 수 있다.  
 
+---
 ### 3. Raspberry Pi Pico W  
 #### 1. Raspberry Pi Pico W는 아두이노 우노에 대응하는 라즈베리파이 재단의 피지컬 컴퓨팅 도구인 라즈베리파이 피코의 와이파이 버전이다.  
 #### 2. 파이썬을 활용하므로 프로그래밍과 관련 생태계에 쉽게 접근이 가능하다.  
@@ -53,14 +60,17 @@
 * 블루투스를 이용한 스마트팜은 근거리에서만 활용이 가능하며 진정한 의미의 IoT라고 볼 수 없다.  
 * 
 
-
+---
 ---
 ## 세그먼트 간 통신 테스트 영상
+---
 ### Web - Firebase
 https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
 
 ---
+---
 ## 세팅
+---
 ### 1.Firebase 세팅
 #### 1. 아래 링크로 이동해서 구글 계정으로 로그인을 하고, 오른쪽 상단에 있는 '콘솔로 이동' 버튼을 눌러 Firebase 콘솔로 들어간다.  
 [https://firebase.google.com/](https://firebase.google.com/)  
@@ -122,10 +132,12 @@ https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-
 * Firebase 사용 요금제는 아래 링크를 참고하면 되며, 테스트 용도로는 비용이 따로 들지 않는다고 봐도 무방하다.  
 [https://firebase.google.com/pricing?authuser=0&hl=ko](https://firebase.google.com/pricing?authuser=0&hl=ko)  
 
+---
 ### 2. Web(github pages) 세팅  
 * 테스트 링크  
 [https://mtinet.github.io/smartFarm/web/public/index.html  ](https://mtinet.github.io/smartFarm/web/public/index.html)  
 
+---
 ### 3. Raspberry Pi Pico W 세팅  
 #### 1. 개발 IDE로는 [Thonny](https://thonny.org/)를 사용한다.  
 #### 2. Thonny 설치 후 Run-Configure Interpreter-Interpreter에서 'MicroPython (Raspberry Pi Pico)'를 선택하고 연결된 Port를 선택해야 피코에 마이크로파이썬을 사용해 프로그래밍을 하여 업로드 할 수 있다.  
