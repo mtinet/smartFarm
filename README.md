@@ -9,7 +9,8 @@
 ### Firebase 세팅
 
 ### Web(github pages) 세팅
-
+* 테스트 링크 
+[https://mtinet.github.io/smartFarm/web/public/index.html  ](https://mtinet.github.io/smartFarm/web/public/index.html)  
 
 ## 세그먼트 간 통신 테스트 영상
 ### Web - Firebase
