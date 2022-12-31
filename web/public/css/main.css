@@ -1,0 +1,45 @@
+.info {
+  padding: 20px;
+}
+.example {
+  overflow: auto;
+  border-bottom: 1px solid rgba(0,0,0,0.6);
+  box-sizing: border-box;
+  clear: both;
+  margin-bottom: 30px;
+}
+.example > .code, .example > .display {
+  box-sizing: border-box;
+  padding: 10px;
+}
+.example > .code {
+}
+.example > .display {
+  text-align: center;
+  overflow: auto;
+  padding: 20px 0;
+  overflow: hidden;
+}
+.example > .display {
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (min-device-width: 768px) {
+  .gauge-container {
+    width: 200px;
+    height: 200px;
+  }
+  .example > .code {
+    width: 65%;
+    float: left;
+  }
+  .example > .display {
+    width: 35%;
+    float: right;
+    padding: 10px;
+  }
+}
