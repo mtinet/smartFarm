@@ -62,7 +62,9 @@
 
 14. firebase config 정보를 가져온다. 아래의 최종 이미지 안에 있는 firebaseConfig 내부의 값만 복사해서 내 웹의 web/public/js/firebase.js파일의 해당 부분에 붙여넣으면 자신의 Realtime Database에 접근해서 온도, 습도, 조도, LED제어, Fan제어를 위한 데이터를 주고 받는 smartFarm 제어용 웹 서비스를 바로 이용할 수 있다. 
 <img width="287" alt="화면 캡처 2022-12-31 155119" src="https://user-images.githubusercontent.com/13882302/210128094-0829b06a-c575-4ba5-8ef4-2df90652cc8b.png">  
- 
+
+* Firebase 사용 요금제는 아래 링크를 참고하면 되며, 테스트 용도로는 비용이 따로 들지 않는다고 봐도 무방하다.  
+[https://firebase.google.com/pricing?authuser=0&hl=ko](https://firebase.google.com/pricing?authuser=0&hl=ko)  
 
 ### 2. Web(github pages) 세팅
 * 테스트 링크 
