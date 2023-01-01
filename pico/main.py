@@ -6,7 +6,8 @@ import random
 
 # 제어할 핀 번호 설정
 from machine import Pin
-led = Pin(27, Pin.OUT)
+led = Pin(26, Pin.OUT)
+fan = Pin(27, Pin.OUT)
 
 
 # 와이파이 연결하기
@@ -35,12 +36,20 @@ response = urequests.get(url+".json").json()
 while True:
     # 현재 DB의 정보를 가져옴
     response = urequests.get(url+".json").json()
-    # 현재 DB의 led 키 값의 상태에 따라 led 27번을 제어
+    # 현재 DB의 led 키 값의 상태에 따라 led 26번을 제어
     if (response['smartFarm']['led'] == 0) :
-        led.value(0)
-    else :
         led.value(1)
+    else :
+        led.value(0)
+    
+    # 현재 DB의 fan 키 값의 상태에 따라 led 27번을 제어
+    if (response['smartFarm']['fan'] == 0) :
+        fan.value(1)
+    else :
+        fan.value(0)
 
     # 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
-    myobj = {'humi': random.randrange(0,100), 'temp': random.randrange(0, 50)}
+    myobj = {'light': random.randrange(0, 100), 'temp': random.randrange(0, 50), 'humi': random.randrange(0,100)}
     urequests.patch(url+"smartFarm.json", json = myobj).json()
+
+
