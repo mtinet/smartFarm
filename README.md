@@ -216,7 +216,7 @@ fan = Pin(27, Pin.OUT)
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 if not wlan.isconnected():
-    wlan.connect("SSID", "Password")
+    wlan.connect("<SSID>", "<Password>")
     print("Waiting for Wi-Fi connection", end="...")
     while not wlan.isconnected():
         print(".", end="")
@@ -226,7 +226,7 @@ else:
     print("WiFi is Connected")
 
 # RTDB주소
-url = "<자신의 Firebase RTDB주소"
+url = "<자신의 Firebase RTDB주소>"
 
 # DB 내역 가져오기
 response = urequests.get(url+".json").json()
