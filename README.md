@@ -195,7 +195,7 @@ sleep(0.2)
 
 import main
 ```
-#### 11. 아래 캡쳐의 17번째 줄 wlan.connect의 파라메터에는 자신의 와이파이 SSID, Password를 입력해 놓으면 자동으로 와이파이에 접속이 됩니다. 27번째줄 url에는 자신이 만든 Firebase RTDB의 주소로 수정해주세요.  
+#### 11. 아래 캡쳐의 17번째 줄 wlan.connect의 파라메터에는 자신의 와이파이 SSID, Password를 입력해 놓으면 자동으로 와이파이에 접속이 됩니다. 27번째줄 url에는 자신이 만든 Firebase RTDB의 주소로 수정해주세요. 현재 코드는 조도, 온도, 습도 값을 랜덤으로 생성해서 보내도록 세팅해놨습니다. 추후 실제 센서를 테스트 하여 코드를 수정할 예정입니다. 
 ![image](https://user-images.githubusercontent.com/13882302/210161436-af873a7e-5dfd-488a-8f00-099e9612da21.png)  
 
 * main.py
