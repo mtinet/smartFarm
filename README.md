@@ -74,6 +74,10 @@ https://user-images.githubusercontent.com/13882302/210140386-bab783f3-679c-4fcc-
 
 https://user-images.githubusercontent.com/13882302/210140510-c865a007-dc22-45c3-a544-d3b83081fc7e.mp4
 
+#### 3. Raspberry Pi Pico W - Firebase - Web 상호 연동 전체 테스트(센서 실측, 실물 액츄에이터 제어만 빠진 상태)  
+https://user-images.githubusercontent.com/13882302/210160212-4c1c4434-d080-4d26-9ced-889305b29337.mp4
+https://user-images.githubusercontent.com/13882302/210160762-b4973f54-8970-44d7-9b3c-84a1720f3988.mp4
+
 
 ### Web - Firebase
 https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
