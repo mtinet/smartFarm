@@ -170,6 +170,8 @@ https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-
 #### 7. 따라서 Firebase 인증 토큰을 발급받는데 사용하는 라이브러리를 쓸 수 없고, Firebase RTDB의 규칙을 false로 해 놓을 경우 토큰을 통한 쓰기, 읽기 권한을 획득할 방법이 없어 규칙을 항상 true로 해놓고 사용해야 하는 불편함이 있다. 추후 피코의 내부 메모리 용량이 늘어난 제품이 나오면 해결될 문제로 보인다.  
 #### 8. pico 폴더 안에 있는 boot.py, main.py파일을 자신의 피코에 업로드 한 다음 상단의 플레이 버튼을 누릅니다. Thonny로 실행을 하면 각각의 파일들을 원하는대로 실행할 수 있지만, 아두이노처럼 전원을 넣으면 바로 해당 코드가 실행되게 하기 위해서는 파일명을 반드시 main.py로 지정해줘야 합니다. boot.py 파일은 피코가 잘 부팅이 되고 있는지를 시각적으로 확인하기 위해서 원래 피코의 boot과정을 약간 수정해 놓은 파일이라고 생각하면 됩니다.  
 ![image](https://user-images.githubusercontent.com/13882302/210161452-b20a5bf4-2190-4bed-b0e1-6f0f42f0872e.png)  
+
+* boot.py
 ```python
 from machine import Pin
 from utime import sleep
@@ -192,7 +194,9 @@ sleep(0.2)
 import main
 ```
 #### 9. 아래 캡쳐의 17번째 줄 wlan.connect의 파라메터에는 자신의 와이파이 SSID, Password를 입력해 놓으면 자동으로 와이파이에 접속이 됩니다. 27번째줄 url에는 자신이 만든 Firebase RTDB의 주소로 수정해주세요.  
-![image](https://user-images.githubusercontent.com/13882302/210161436-af873a7e-5dfd-488a-8f00-099e9612da21.png)
+![image](https://user-images.githubusercontent.com/13882302/210161436-af873a7e-5dfd-488a-8f00-099e9612da21.png)  
+
+* main.py
 ```python 
 from machine import Pin, I2C
 import network
