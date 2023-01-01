@@ -170,6 +170,81 @@ https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-
 #### 7. 따라서 Firebase 인증 토큰을 발급받는데 사용하는 라이브러리를 쓸 수 없고, Firebase RTDB의 규칙을 false로 해 놓을 경우 토큰을 통한 쓰기, 읽기 권한을 획득할 방법이 없어 규칙을 항상 true로 해놓고 사용해야 하는 불편함이 있다. 추후 피코의 내부 메모리 용량이 늘어난 제품이 나오면 해결될 문제로 보인다.  
 #### 8. pico 폴더 안에 있는 boot.py, main.py파일을 자신의 피코에 업로드 한 다음 상단의 플레이 버튼을 누릅니다. Thonny로 실행을 하면 각각의 파일들을 원하는대로 실행할 수 있지만, 아두이노처럼 전원을 넣으면 바로 해당 코드가 실행되게 하기 위해서는 파일명을 반드시 main.py로 지정해줘야 합니다. boot.py 파일은 피코가 잘 부팅이 되고 있는지를 시각적으로 확인하기 위해서 원래 피코의 boot과정을 약간 수정해 놓은 파일이라고 생각하면 됩니다.  
 ![image](https://user-images.githubusercontent.com/13882302/210161452-b20a5bf4-2190-4bed-b0e1-6f0f42f0872e.png)  
+```python
+from machine import Pin
+from utime import sleep
+
+led = Pin(27, Pin.OUT)
+
+led.on()
+sleep(0.2)
+led.off()
+sleep(0.2)
+led.on()
+sleep(0.2)
+led.off()
+sleep(0.2)
+led.on()
+sleep(0.2)
+led.off()
+sleep(0.2)
+
+import main
+```
 #### 9. 아래 캡쳐의 17번째 줄 wlan.connect의 파라메터에는 자신의 와이파이 SSID, Password를 입력해 놓으면 자동으로 와이파이에 접속이 됩니다. 27번째줄 url에는 자신이 만든 Firebase RTDB의 주소로 수정해주세요.  
 ![image](https://user-images.githubusercontent.com/13882302/210161436-af873a7e-5dfd-488a-8f00-099e9612da21.png)
+```python 
+from machine import Pin, I2C
+import network
+import time
+import urequests
+import random
 
+# 제어할 핀 번호 설정
+from machine import Pin
+led = Pin(26, Pin.OUT)
+fan = Pin(27, Pin.OUT)
+
+
+# 와이파이 연결하기
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+if not wlan.isconnected():
+    wlan.connect("SSID", "Password")
+    print("Waiting for Wi-Fi connection", end="...")
+    while not wlan.isconnected():
+        print(".", end="")
+        time.sleep(1)
+else:
+    print(wlan.ifconfig())
+    print("WiFi is Connected")
+
+# RTDB주소
+url = "<자신의 Firebase RTDB주소"
+
+# DB 내역 가져오기
+response = urequests.get(url+".json").json()
+# byte형태의 데이터를 json으로 변경했기 때문에 메모리를 닫아주는 일을 하지 않아도 됨
+# print(response)
+# print(response['smartFarm'])
+# print(response['smartFarm']['led'])
+
+while True:
+    # 현재 DB의 정보를 가져옴
+    response = urequests.get(url+".json").json()
+    # 현재 DB의 led 키 값의 상태에 따라 led 26번을 제어
+    if (response['smartFarm']['led'] == 0) :
+        led.value(1)
+    else :
+        led.value(0)
+    
+    # 현재 DB의 fan 키 값의 상태에 따라 led 27번을 제어
+    if (response['smartFarm']['fan'] == 0) :
+        fan.value(1)
+    else :
+        fan.value(0)
+
+    # 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
+    myobj = {'light': random.randrange(0, 100), 'temp': random.randrange(0, 50), 'humi': random.randrange(0,100)}
+    urequests.patch(url+"smartFarm.json", json = myobj).json()
+```
