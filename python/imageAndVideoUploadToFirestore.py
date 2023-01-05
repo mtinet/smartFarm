@@ -1,0 +1,24 @@
+import firebase_admin
+from firebase_admin import credentials, storage
+
+# Firebase 인증 정보를 가져옵니다.
+cred = credentials.Certificate("serviceAccountKey.json")
+
+# Firebase 인증 정보를 이용해 애플리케이션을 초기화합니다.
+firebase_admin.initialize_app(cred, {
+    'storageBucket': 'imageandvideo-19310.appspot.com'
+})
+
+# 업로드할 이미지 파일을 열기 위해 파일 객체를 생성합니다.
+with open("my.jpg", "rb") as image_file:
+    # 이미지 파일 데이터를 읽어옵니다.
+    image_data = image_file.read()
+
+    # 이미지 데이터를 이용해 Blob 객체를 생성합니다.
+    bucket = storage.bucket()
+    blob = bucket.blob("images/image.jpg")
+    blob.upload_from_string(image_data, content_type='image/jpeg')
+
+# 업로드된 이미지의 URL을 가져옵니다.
+url = blob.public_url
+print(url)
