@@ -9,11 +9,6 @@ from machine import Pin
 led = Pin(26, Pin.OUT)
 fan = Pin(27, Pin.OUT)
 
-#위도, 경도 표시하기
-lat = 37.4983
-long = 126.9252
-
-
 # 와이파이 연결하기
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
@@ -37,6 +32,19 @@ response = urequests.get(url+".json").json()
 # print(response['smartFarm'])
 # print(response['smartFarm']['led'])
 
+
+#위도, 경도 표시하기, 전원을 켤 때 한 번만 실행
+lat = 37.4983
+long = 126.9252
+
+mylocation = {
+    'lat' : lat,
+    'long' : long
+    }
+
+urequests.patch(url+"location/.json", json = mylocation).json()
+
+# 실시간 정보를 주기적으로 갱신
 while True:
     # 현재 DB의 정보를 가져옴
     response = urequests.get(url+".json").json()
@@ -56,10 +64,8 @@ while True:
     myobj = {
         'light': random.randrange(0, 100),
         'temp': random.randrange(0, 50),
-        'humi': random.randrange(0,100),
-        'lat' : lat,
-        'long' : long
+        'humi': random.randrange(0,100)
         }
-    urequests.patch(url+"smartFarm.json", json = myobj).json()
+    urequests.patch(url+"smartFarm/.json", json = myobj).json()
 
 
