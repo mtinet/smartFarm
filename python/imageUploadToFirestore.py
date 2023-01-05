@@ -16,8 +16,8 @@ with open("my.jpg", "rb") as image_file:
 
     # 이미지 데이터를 이용해 Blob 객체를 생성합니다.
     bucket = storage.bucket()
-    blob = bucket.blob("images/image.jpg") // 올라갈 폴더와 파일명
-    blob.upload_from_string(image_data, content_type='image/jpeg') // 콘텐츠 타입 설정
+    blob = bucket.blob("images/image.jpg") # 올라갈 폴더와 파일명
+    blob.upload_from_string(image_data, content_type='image/jpeg') # 콘텐츠 타입 설정
 
 # 업로드된 이미지의 URL을 가져옵니다.
 url = blob.public_url
