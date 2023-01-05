@@ -25,6 +25,26 @@ else:
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
 
+# 초기화 및 위도, 경도 표시하기, 전원을 켤 때 한 번만 실행
+lat = 37.4983
+long = 126.9252
+
+# 장비 초기화
+myobj = {
+    'led': 1,
+    'fan': 1
+    }
+
+# 위치값 전송 
+mylocation = {
+    'lat' : lat,
+    'long' : long
+    }
+
+urequests.patch(url+"smartFarm/.json", json = myobj).json()
+urequests.patch(url+"location/.json", json = mylocation).json()
+
+
 # DB 내역 가져오기
 response = urequests.get(url+".json").json()
 # byte형태의 데이터를 json으로 변경했기 때문에 메모리를 닫아주는 일을 하지 않아도 됨
@@ -32,17 +52,6 @@ response = urequests.get(url+".json").json()
 # print(response['smartFarm'])
 # print(response['smartFarm']['led'])
 
-
-#위도, 경도 표시하기, 전원을 켤 때 한 번만 실행
-lat = 37.4983
-long = 126.9252
-
-mylocation = {
-    'lat' : lat,
-    'long' : long
-    }
-
-urequests.patch(url+"location/.json", json = mylocation).json()
 
 # 실시간 정보를 주기적으로 갱신
 while True:
