@@ -9,7 +9,7 @@ from machine import Pin
 led = Pin(26, Pin.OUT)
 fan = Pin(27, Pin.OUT)
 
-#위도 경도 표시하기
+#위도, 경도 표시하기
 lat = 37.4983
 long = 126.9252
 
