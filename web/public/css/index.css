@@ -20,12 +20,12 @@
     stroke: #334455;
     stroke-width: 2;
   }
-  
+
   .gauge-container.one > .gauge > .value {
     stroke: rgb(47, 227, 255);
     stroke-width: 2;
   }
-  
+
   .gauge-container.one > .gauge > .value-text {
     fill: rgb(47, 227, 255);
     font-family: sans, 'sans-serif';
@@ -127,4 +127,44 @@
   .gauge-container.six > .gauge > .value-text {
     fill: #FF6DAF;
     font-size: 0.7em;
+  }
+
+  .button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .button:hover span {
+    padding-right: 25px;
+  }
+
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
   }
