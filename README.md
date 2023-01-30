@@ -48,6 +48,7 @@
 #### 1. Raspberry Pi Pico W는 아두이노 우노에 대응하는 라즈베리파이 재단의 피지컬 컴퓨팅 도구인 라즈베리파이 피코의 와이파이 버전이다.  
 ##### * [PicoW-A4-Pinout.pdf](https://github.com/mtinet/smartFarm/files/10328225/PicoW-A4-Pinout.pdf)  
 ##### * [핀 설명 자료](https://www.mischianti.org/2022/09/16/raspberry-pi-pico-w-high-resolution-pinout-and-specs/)  
+##### * [Pico W 활용방법](https://make.e4ds.com/contest/board_view.asp?t=2&idx=653&ctidx=8)  
 <img width="1031" alt="image" src="https://user-images.githubusercontent.com/13882302/210160115-be2bebbf-beb9-44d4-8cdd-d1b1826df9bc.png">  
 
 ![image](https://user-images.githubusercontent.com/13882302/210161854-bd063f3a-399e-42e1-a109-cb42c5f28a5b.png)  
