@@ -10,12 +10,10 @@ oled = SSD1306_I2C(128, 64, i2c)
 while True:
     oled.fill(0)
     cmd = ["hihi", "junse", "nini", "babo"]
-    ran = random.randint(0,len(cmd)-1)
-    print(ran)
-
-    oled.text(cmd[ran], 10, 10)
+    ran = random.randint(0, len(cmd)-1)
+    ranX = random.randint(0, 100)
+    ranY = random.randint(0, 60)
+    oled.text(cmd[ran], ranX, ranY)
     
     oled.show()
     time.sleep(1)
-
-
