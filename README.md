@@ -164,7 +164,7 @@ https://user-images.githubusercontent.com/13882302/210160762-b4973f54-8970-44d7-
 
 ---
 ### 3. Raspberry Pi Pico W 세팅  
-#### 1. 개발 IDE로는 [Thonny](https://thonny.org/)를 사용한다. [펌웨어 링크](https://micropython.org/download/rp2-pico/))로 들어가서 view raw를 눌러 펌웨어를 다운로드 받고, 피코 W의 bootsel버튼을 누르고 USB케이블을 연결하면 활성화되는 피코 폴더(파일관리자-내PC-피코 W 드라이브)에 복사해서 넣는다.  
+#### 1. 개발 IDE로는 [Thonny](https://thonny.org/)를 사용한다. [펌웨어 링크](https://micropython.org/download/rp2-pico/)로 들어가서 view raw를 눌러 펌웨어를 다운로드 받고, 피코 W의 bootsel버튼을 누르고 USB케이블을 연결하면 활성화되는 피코 폴더(파일관리자-내PC-피코 W 드라이브)에 복사해서 넣는다.  
 #### 2. Thonny 설치 후 Run-Configure Interpreter-Interpreter에서 'MicroPython (Raspberry Pi Pico)'를 선택하고 연결된 Port를 선택해야 피코에 마이크로파이썬을 사용해 프로그래밍을 하여 업로드 할 수 있다.  
 ![image](https://user-images.githubusercontent.com/13882302/210135043-75644b64-9b10-489a-9523-ae6fa1667efd.png)  
 ![image](https://user-images.githubusercontent.com/13882302/210135032-d438b8ef-6839-4e84-9a85-aebbaae9cbf3.png)  
