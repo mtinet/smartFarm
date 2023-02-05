@@ -68,25 +68,28 @@
 ---
 ## 세그먼트 간 통신 테스트 영상
 
-### Raspberry Pi Pico - Firebase - Web(P5js, Android WebViewer)
+### Raspberry Pi Pico - Firebase - Github Pages(P5js)
 
 #### 1. 웹페이지를 Github Pages에 올려 구동을 한 후 Firebase와 통신이 잘되는지 테스트  
 https://user-images.githubusercontent.com/13882302/210140386-bab783f3-679c-4fcc-b290-30dfc66772a5.mp4
 
-#### 2. P5js, Github Pages, Android App으로 각각 접속하여 제어하는 테스트  
+#### 2. P5js, Github Pages, Android WebViewer로 각각 접속하여 제어하는 테스트  
 ![KakaoTalk_20221231_232533880](https://user-images.githubusercontent.com/13882302/210140143-d5ca20ad-de6f-42fe-abd1-65e3b9ef64f6.jpg)  
 
 https://user-images.githubusercontent.com/13882302/210140510-c865a007-dc22-45c3-a544-d3b83081fc7e.mp4
 
-#### 3. Raspberry Pi Pico W - Firebase - Web 상호 연동 전체 테스트(센서 실측, 실물 액츄에이터 제어만 빠진 상태)  
+### Raspberry Pi Pico - Firebase - Github Pages(Gauge)
+#### 1. Firebase - Github Pages  
+https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
+
+#### 2. Raspberry Pi Pico W - Firebase - Github Pages 상호 연동 전체 테스트(센서 실측, 실물 액츄에이터 제어만 빠진 상태)  
 https://user-images.githubusercontent.com/13882302/210160212-4c1c4434-d080-4d26-9ced-889305b29337.mp4  
 
-#### 4. Pico에 연결되어 있는 엘이디의 초록색은 LED On, Fan Off, 하늘색은 LED On, Fan On, 파란색은 LED Off, Fan On, 꺼지면 LED Off, Fan Off
+#### 3. Pico에 연결되어 있는 엘이디의 초록색은 LED On, Fan Off, 하늘색은 LED On, Fan On, 파란색은 LED Off, Fan On, 꺼지면 LED Off, Fan Off
 https://user-images.githubusercontent.com/13882302/210160762-b4973f54-8970-44d7-9b3c-84a1720f3988.mp4  
 
 
-### Web - Firebase
-https://user-images.githubusercontent.com/13882302/210126670-243a6fd7-b9b9-4378-b12e-63e5b2ef9260.mp4
+
 
 
 ---
