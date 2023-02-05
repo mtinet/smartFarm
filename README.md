@@ -1,5 +1,7 @@
 # smartFarm
-
+---
+## 강의 자료
+[han.gl/WLvoNj](han.gl/WLvoNj)
 ---
 ## 구조
 ### Raspberry Pi Pico W - Firebase Realtime Database - Web or App  
