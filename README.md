@@ -1,7 +1,7 @@
 # smartFarm
 ---
 ## 강의 자료  
-[han.gl/WLvoNj](http://han.gl/WLvoNj)  
+[http://han.gl/WLvoNj](http://han.gl/WLvoNj)  
 
 ---
 ## 구조
