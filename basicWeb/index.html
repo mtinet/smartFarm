@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <title>나만의 스마트팜</title>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+  </head>
+
+  <body>
+    <center>
+      <h1>쥬디다무의 스마트팜</h1>
+      <p id="humi"></p>
+      <p id="temp"></p>
+      <p id="light"></p>
+
+      <button type="button" onclick="ledOnOff()">조명 제어</button>
+      <button type="button" onclick="fanOnOff()">팬 제어</button>
+    </center>
+
+    <!-- Firebase 정보 가져와서 게이지에 표현하기, 제어용 버튼 클릭 시 Firebase에 데이터 보내기 -->
+    <script type="text/javascript" src="firebase.js"> </script>
+  </body>
+</html>
