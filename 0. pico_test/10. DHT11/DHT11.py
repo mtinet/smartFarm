@@ -1,11 +1,16 @@
-from machine import Pin, I2C
-import utime as time
+from machine import Pin
+import time
 from dht import DHT11, InvalidChecksum
-
+ 
+# Pin Clear 
+for i in range(0,29):                       
+    led = machine.Pin(i, machine.Pin.OUT)   
+    led.value(0)
+    time.sleep(0.1) # sleep 100ms
+    
+sensor = DHT11(Pin(15, Pin.OUT, Pin.PULL_DOWN)) #DHT11 Pin15
 while True:
-    pin = Pin(15, Pin.OUT, Pin.PULL_DOWN)
-    sensor = DHT11(pin)
-    t  = sensor.temperature
-    h = sensor.humidity
-    print("Temperature: {}".format(t), "Humidity: {}".format(h))
-    time.sleep(1.5)
+    temp = sensor.temperature
+    humidity = sensor.humidity
+    print("Temperature: {}°C   Humidity: {:.0f}% ".format(temp, humidity))
+    time.sleep(2)
