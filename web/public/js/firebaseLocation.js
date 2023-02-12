@@ -1,4 +1,4 @@
-let humi = 100;
+let mois= 100;
 let temp = 50;
 let light = 100;
 let fanStatus = Boolean(false);
