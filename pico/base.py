@@ -14,7 +14,7 @@ fan = Pin(27, Pin.OUT)
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 if not wlan.isconnected():
-    wlan.connect("<SSID>", "<password>")
+    wlan.connect("KT_GiGA_DC1E", "027612688m")
     print("Waiting for Wi-Fi connection", end="...")
     while not wlan.isconnected():
         print(".", end="")
@@ -24,7 +24,7 @@ else:
     print("WiFi is Connected")
 
 # RTDB주소
-url = "<자기 Real Time Database 주소" # ex. "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
+url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
 
 # 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 myobjInitialize = {

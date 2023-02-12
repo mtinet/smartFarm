@@ -122,26 +122,32 @@ while True:
     # 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기 
     oled.blit(fb, 96, 0)
     # 글자 넣기
-    oled.text("Light: ", 0, 10)
-    oled.text(str(round(lightValue,2)), 75, 10)
-    oled.text("Temp: ", 0, 25)
-    oled.text(str(round(temperatureValue,2)), 75, 25)
-    oled.text("Moisture: ", 0, 40)
-    oled.text(str(round(moistureValue,2)), 75, 40)
-    # 이미지와 글자가 보여지도록 하기 
-    oled.show()
+    oled.text("Light: ", 0, 5)
+    oled.text(str(round(lightValue,2)), 75, 5)
+    oled.text("Temp: ", 0, 20)
+    oled.text(str(round(temperatureValue,2)), 75, 20)
+    oled.text("Moisture: ", 0, 35)
+    oled.text(str(round(moistureValue,2)), 75, 35)
+    
     
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
     if (response['smartFarm']['led'] == 0) :
         led.value(0)
+        oled.text("LED Off", 5, 50)
     else :
         led.value(1)
+        oled.text("LED On", 5, 50)
     
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
     if (response['smartFarm']['fan'] == 0) :
         fan.value(0)
+        oled.text("Fan Off", 70, 50)
     else :
         fan.value(1)
+        oled.text("Fan On", 70, 50)
+        
+    # OLED에 이미지와 글자가 보여지도록 하기 
+    oled.show()
 
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobj = {
@@ -157,4 +163,3 @@ while True:
     print("Message Send")
     print(myobj)
     print()
-
