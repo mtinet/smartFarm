@@ -61,7 +61,7 @@ while True:
     myobj = {
         'light': random.randrange(0, 100),
         'temp': random.randrange(0, 50),
-        'humi': random.randrange(0,100)
+        'mois': random.randrange(0,100)
         }
     urequests.patch(url+"smartFarm.json", json = myobj).json()
     print(myobj)

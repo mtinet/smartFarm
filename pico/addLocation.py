@@ -9,6 +9,11 @@ from machine import Pin
 led = Pin(26, Pin.OUT)
 fan = Pin(27, Pin.OUT)
 
+#위도, 경도 표시하기
+lat = 37.4983519180861
+long = 126.925286048904
+
+
 # 와이파이 연결하기
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
@@ -25,26 +30,6 @@ else:
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
 
-# 초기화 및 위도, 경도 표시하기, 전원을 켤 때 한 번만 실행
-lat = 37.4983
-long = 126.9252
-
-# 장비 초기화
-myobj = {
-    'led': 1,
-    'fan': 1
-    }
-
-# 위치값 전송 
-mylocation = {
-    'lat' : lat,
-    'long' : long
-    }
-
-urequests.patch(url+"smartFarm/.json", json = myobj).json()
-urequests.patch(url+"location/.json", json = mylocation).json()
-
-
 # DB 내역 가져오기
 response = urequests.get(url+".json").json()
 # byte형태의 데이터를 json으로 변경했기 때문에 메모리를 닫아주는 일을 하지 않아도 됨
@@ -52,8 +37,6 @@ response = urequests.get(url+".json").json()
 # print(response['smartFarm'])
 # print(response['smartFarm']['led'])
 
-
-# 실시간 정보를 주기적으로 갱신
 while True:
     # 현재 DB의 정보를 가져옴
     response = urequests.get(url+".json").json()
@@ -73,8 +56,10 @@ while True:
     myobj = {
         'light': random.randrange(0, 100),
         'temp': random.randrange(0, 50),
-        'humi': random.randrange(0,100)
+        'mois': random.randrange(0,100),
+        'lat' : lat,
+        'long' : long,
+        'test' : {'dd':222}
         }
-    urequests.patch(url+"smartFarm/.json", json = myobj).json()
-
+    urequests.patch(url+"smartFarm.json", json = myobj).json()
 
