@@ -35,18 +35,18 @@ function gotData(data) {
   // console.log(values);
 
   // firebase에서 가져온 딕셔너리 안의 값을 변수에 넣는 코드
-  humi = val.humi;
+  mois = val.mois;
   temp = val.temp;
   light = val.light;
   ledStatus = val.led;
   fanStatus = val.fan;
 
   //firebase에서 가져온 값을 HTML파일에 보여주는 코드
-  document.getElementById("humi").innerHTML = "Humidity: " + humi;
+  document.getElementById("mois").innerHTML = "Moisture: " + mois;
   document.getElementById("temp").innerHTML = "Temperature: " + temp;
   document.getElementById("light").innerHTML = "Light: " + light;
 
-  // console.log(val.humi)
+  // console.log(val.mois)
   // console.log(val.temp)
   // console.log(val.light)
   // console.log(ledStatus)
