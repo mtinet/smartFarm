@@ -36,13 +36,13 @@ function gotData(data) {
   var values = Object.values(val);
   //console.log(values);
 
-  humi = val.humi;
+  mois = val.mois;
   temp = val.temp;
   light = val.light;
   ledStatus = val.led;
   fanStatus = val.fan;
 
-  //console.log(val.humi)
+  //console.log(val.mois)
   //console.log(val.temp)
   //console.log(val.light)
   //console.log(ledStatus)
@@ -137,7 +137,7 @@ function fanOnOff() {
   //console.log(fanStatus);
 }
 
-// Firebase의 Realtime Database에 저장되어 있는 조도(light), 온도(temp), 습도(humi) 정보를 가져와서 게이지 1, 2, 3에 뿌려서 표현하게 함, Firebase의 정보가 업데이트 되면 실시간으로 게이지가 변함
+// Firebase의 Realtime Database에 저장되어 있는 조도(light), 온도(temp), (mois) 정보를 가져와서 게이지 1, 2, 3에 뿌려서 표현하게 함, Firebase의 정보가 업데이트 되면 실시간으로 게이지가 변함
 // 받아온 값의 수치에 따라서 초록-노랑-주황-빨강으로 게이지의 색깔이 변하게 세팅되어 있으므로, 색깔을 보고 수동으로 led와 fan을 조정하여 식물에 적용되는 환경을 조정할 수 있음
 // 게이지 1은 조도를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
 var gauge1 = Gauge(
@@ -208,7 +208,7 @@ var gauge3 = Gauge(
 // Firebase Realtime Database로부터 넘어온 값을 각 게이지의 값에 넣어줌
   var value1 = light,
       value2 = temp,
-      value3 = humi;
+      value3 = mois;
 
   gauge1.setValueAnimated(value1, 1.5);
   gauge2.setValueAnimated(value2, 1.5);
