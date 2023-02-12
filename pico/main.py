@@ -15,6 +15,10 @@ light = ADC(28) # 조도 감지
 
 conversion_factor = 3.3 / 65535
 
+#위도, 경도 표시하기
+lat = 37.4983519180861
+long = 126.925286048904
+
 
 # 와이파이 연결하기
 wlan = network.WLAN(network.STA_IF)
@@ -40,12 +44,19 @@ url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
 
 # RTDB 초기 세팅이 안되어 있는 경우 초기 세팅하기
 myobjInitialize = {
-    'led': 1,
-    'fan': 1
+    'led': 0,
+    'fan': 0
     }
-
 # myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
+
+# RTDB 위치 정보 초기 세팅하기
+myLocation = {
+    'lat': lat,
+    'long': long
+    }
+# myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
+urequests.patch(url+"location.json", json = myLocation).json()
 
     
 # DB 내역 가져오기
