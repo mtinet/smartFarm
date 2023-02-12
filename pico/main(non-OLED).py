@@ -112,4 +112,3 @@ while True:
     print("Message Send")
     print(myobj)
     print()
-
