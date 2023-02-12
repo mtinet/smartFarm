@@ -4,7 +4,7 @@ import time
 import urequests
 import random
 from machine import Pin
- 
+
 
 # 제어할 핀 번호 설정
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
@@ -15,7 +15,8 @@ light = ADC(28) # 조도 감지
 
 conversion_factor = 3.3 / 65535
 
-#위도, 경도 표시하기
+# 이메일, 위도, 경도 표시하기
+email = 'mtinet@hanmail.net'
 lat = 37.4983519180861
 long = 126.925286048904
 
@@ -40,6 +41,7 @@ else:
 
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
+mapUrl = "https://smartfarmlocation-default-rtdb.firebaseio.com/"
 
 
 # RTDB 초기 세팅이 안되어 있는 경우 초기 세팅하기
@@ -52,11 +54,14 @@ urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
 
 # RTDB 위치 정보 초기 세팅하기
 myLocation = {
+    'e-mail': email,
     'lat': lat,
     'long': long
     }
-# myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
+# myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"location.json", json = myLocation).json()
+# myLocation를 위치 수집용 RTDB로 보내기
+urequests.patch(mapUrl+"location.json", json = myLocation).json()
 
     
 # DB 내역 가져오기
