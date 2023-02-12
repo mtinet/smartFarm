@@ -266,4 +266,4 @@ while True:
     urequests.patch(url+"smartFarm.json", json = myobj).json()
 ```
 #### 13. pico 폴더에 있는 main.py파일과 ssd1306.py파일을 pico w에 함께 넣어야 OLED로 모니터링이 됩니다.  
-#### 14. main.py 파일은 Firebase와 LED, Fan제어, Moisture, Temperature, Light값을 주고 받을 수 있도록 세팅 되어 있습니다.  
+#### 14. main.py 파일은 Firebase의 값에 따라 LED, Fan을 제어하고, 센서로부터 측정된 Moisture, Temperature, Light값을 Firebase로 보낼 수 있도록 세팅 되어 있습니다.  
