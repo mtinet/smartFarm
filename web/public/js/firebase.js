@@ -172,7 +172,7 @@ var gauge2 = Gauge(
     }
   }
 );
-// 게이지 3은 습도를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
+// 게이지 3은 수분를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
 var gauge3 = Gauge(
   document.getElementById("gauge3"),
   {
