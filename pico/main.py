@@ -64,7 +64,7 @@ urequests.patch(url+"location.json", json = myLocation).json()
 # myLocation를 위치 수집용 RTDB로 보내기
 urequests.patch(mapUrl+"location.json", json = myLocation).json()
 print("Location Info has been sent.")
-
+print()
     
 # DB 내역 가져오기
 response = urequests.get(url+".json").json()
