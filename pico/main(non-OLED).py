@@ -4,6 +4,13 @@ import time
 import urequests
 import random
 
+
+# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
+nickname = 'mtinet'  # 닉네임 변수를 자신만의 닉네임으로 수정하고, web/public/js/firebaseLocation.js 파일의 5번 째 줄에 있는 nickname 변수도 똑같이 수정해주세요. 
+lat = 37.4983519180861
+long = 126.925286048904
+
+
 # 제어할 핀 번호 설정
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
 fan = Pin(5, Pin.OUT) # 팬 제어
@@ -12,12 +19,6 @@ temperature = ADC(27) # 온도 감지
 light = ADC(28) # 조도 감지
 
 conversion_factor = 3.3 / 65535 # 측정값 보정 계산식 
-
-
-# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'mtinet'
-lat = 37.4983519180861
-long = 126.925286048904
 
 
 # 와이파이 연결하기
@@ -53,14 +54,16 @@ urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
 urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
 print("SmartFarm has been initialized.")
 
+
 # RTDB 위치 정보 초기 세팅하기
 myLocation = {
     'lat': lat,
     'long': long
     }
-print(url+"/"+nickname+".json")
+
 # myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"/"+nickname+".json", json = myLocation).json()
+
 # myLocation를 스마트팜 위치 수집용 RTDB로 보내기
 urequests.patch(mapUrl+"/"+nickname+".json", json = myLocation).json()
 print("Location Info has been sent.")
@@ -87,18 +90,23 @@ while True:
     print("LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
     
+    
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
     if (response['smartFarm']['led'] == 0) :
         led.value(0)
+
     else :
         led.value(1)
+
     
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
     if (response['smartFarm']['fan'] == 0) :
         fan.value(0)
+
     else :
         fan.value(1)
 
+        
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobj = {
         'mois': moistureValue,
