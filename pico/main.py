@@ -6,6 +6,13 @@ import random
 from ssd1306 import SSD1306_I2C
 import framebuf
 
+
+# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
+email = 'mtinet@hanmail.net'
+lat = 37.4983519180861
+long = 126.925286048904
+
+
 # 제어할 핀 번호 설정
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
 fan = Pin(5, Pin.OUT) # 팬 제어
@@ -14,12 +21,6 @@ temperature = ADC(27) # 온도 감지
 light = ADC(28) # 조도 감지
 
 conversion_factor = 3.3 / 65535 # 측정값 보정 계산식 
-
-
-# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-email = 'mtinet@hanmail.net'
-lat = 37.4983519180861
-long = 126.925286048904
 
 
 # OLED 기본 설정
@@ -32,8 +33,10 @@ print("I2C Configuration: "+str(i2c))                   # Display I2C config
 
 oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)                  # Init oled display
 
+
 # Raspberry Pi logo as 32x32 bytearray
 buffer = bytearray(b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00|?\x00\x01\x86@\x80\x01\x01\x80\x80\x01\x11\x88\x80\x01\x05\xa0\x80\x00\x83\xc1\x00\x00C\xe3\x00\x00~\xfc\x00\x00L'\x00\x00\x9c\x11\x00\x00\xbf\xfd\x00\x00\xe1\x87\x00\x01\xc1\x83\x80\x02A\x82@\x02A\x82@\x02\xc1\xc2@\x02\xf6>\xc0\x01\xfc=\x80\x01\x18\x18\x80\x01\x88\x10\x80\x00\x8c!\x00\x00\x87\xf1\x00\x00\x7f\xf6\x00\x008\x1c\x00\x00\x0c \x00\x00\x03\xc0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
+
 
 # OLED에 출력하기
 oled.fill(0)
@@ -81,6 +84,7 @@ myobjInitialize = {
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
 print("SmartFarm has been initialized.")
 
+
 # RTDB 위치 정보 초기 세팅하기
 myLocation = {
     'e-mail': email,
@@ -89,6 +93,7 @@ myLocation = {
     }
 # myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"location.json", json = myLocation).json()
+
 # myLocation를 스마트팜 위치 수집용 RTDB로 보내기
 urequests.patch(mapUrl+"location.json", json = myLocation).json()
 print("Location Info has been sent.")
