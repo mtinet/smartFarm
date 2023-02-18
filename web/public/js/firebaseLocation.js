@@ -2,6 +2,7 @@
 let lat = 0;
 let long = 0;
 let label = "쥬디다무 집"
+let nickname = "mtinet" // 반드시 pico w의 main.py의 nickname과 똑같이 수정해주세요. 
 
 // Firebase 접근 정보
 var config = {
@@ -21,7 +22,7 @@ database = firebase.database();
 // 지도 정보 가져오기
 function initMap() {
   // 위치 정보 가져오기
-  var refLocation = database.ref("location");
+  var refLocation = database.ref(nickname);
   refLocation.on("value", gotLocation, errData);
 
   function gotLocation(data) {
@@ -50,6 +51,4 @@ function initMap() {
     console.log("Error!");
     console.log(err);
   }
-
-
 }
