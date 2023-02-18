@@ -7,8 +7,8 @@ from ssd1306 import SSD1306_I2C
 import framebuf
 
 
-# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'mtinet'
+# 닉테임, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
+nickname = 'mtinet' # 닉네임 변수를 자신만의 닉네임으로 수정하고, web/public/js/firebaseLocation.js 파일의 5번 째 줄에 있는 nickname 변수도 똑같이 수정해주세요. 
 lat = 37.4983519180861
 long = 126.925286048904
 
