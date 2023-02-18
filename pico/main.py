@@ -16,6 +16,12 @@ light = ADC(28) # 조도 감지
 conversion_factor = 3.3 / 65535 # 측정값 보정 계산식 
 
 
+# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
+email = 'mtinet@hanmail.net'
+lat = 37.4983519180861
+long = 126.925286048904
+
+
 # OLED 기본 설정
 WIDTH  = 128                                            # oled display width
 HEIGHT = 64                                             # oled display height
@@ -41,13 +47,7 @@ oled.text("  has been", 0, 35)
 oled.text("    initialized.", 0, 45)
 # 이미지와 글자가 보여지도록 하기 
 oled.show()
-    
-
-# 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-email = 'mtinet@hanmail.net'
-lat = 37.4983519180861
-long = 126.925286048904
-
+   
 
 # 와이파이 연결하기
 wlan = network.WLAN(network.STA_IF)
