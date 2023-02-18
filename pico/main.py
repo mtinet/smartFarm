@@ -8,7 +8,7 @@ import framebuf
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-email = 'mtinet@hanmail.net'
+nickname = 'mtinet'
 lat = 37.4983519180861
 long = 126.925286048904
 
@@ -82,20 +82,21 @@ myobjInitialize = {
     }
 # myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
+urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
 print("SmartFarm has been initialized.")
 
 
 # RTDB 위치 정보 초기 세팅하기
 myLocation = {
-    'e-mail': email,
     'lat': lat,
     'long': long
     }
+
 # myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
-urequests.patch(url+"location.json", json = myLocation).json()
+urequests.patch(url+"/"+nickname+".json", json = myLocation).json()
 
 # myLocation를 스마트팜 위치 수집용 RTDB로 보내기
-urequests.patch(mapUrl+"location.json", json = myLocation).json()
+urequests.patch(mapUrl+"/"+nickname+".json", json = myLocation).json()
 print("Location Info has been sent.")
 print()
 
@@ -163,6 +164,7 @@ while True:
     
     # myobj를 RTDB로 보내 객체 값 교체하기, patch는 특정 주소의 데이터가 변경됨
     urequests.patch(url+"smartFarm.json", json = myobj).json()
+    urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
     
     # 교체한 객체값 콘솔에 출력하기 
     print("Message Send")
