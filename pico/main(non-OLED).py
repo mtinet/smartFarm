@@ -7,8 +7,8 @@ import random
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
 nickname = 'mtinet'  # 닉네임 변수를 자신만의 닉네임으로 수정하고, web/public/js/firebaseLocation.js 파일의 5번 째 줄에 있는 nickname 변수도 똑같이 수정해주세요. 
-lat = 37.4983519180861
-long = 126.925286048904
+lat = 37.49836
+long = 126.9253
 
 
 # 제어할 핀 번호 설정
@@ -50,7 +50,7 @@ myobjInitialize = {
     'fan': 0
     }
 # myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
-urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
+urequests.patch(url+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
 urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
 print("SmartFarm has been initialized.")
 
@@ -63,8 +63,6 @@ myLocation = {
 
 # myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"/"+nickname+".json", json = myLocation).json()
-
-# myLocation를 스마트팜 위치 수집용 RTDB로 보내기
 urequests.patch(mapUrl+"/"+nickname+".json", json = myLocation).json()
 print("Location Info has been sent.")
 print()
@@ -87,12 +85,12 @@ while True:
     
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("LED:", response[nickname]['smartFarm']['led'], "Fan:", response[nickname]['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
     
     
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
-    if (response['smartFarm']['led'] == 0) :
+    if (response[nickname]['smartFarm']['led'] == 0) :
         led.value(0)
 
     else :
@@ -100,7 +98,7 @@ while True:
 
     
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
-    if (response['smartFarm']['fan'] == 0) :
+    if (response[nickname]['smartFarm']['fan'] == 0) :
         fan.value(0)
 
     else :
@@ -115,7 +113,7 @@ while True:
         }
     
     # myobj를 RTDB로 보내 객체 값 교체하기, patch는 특정 주소의 데이터가 변경됨
-    urequests.patch(url+"smartFarm.json", json = myobj).json()
+    urequests.patch(url+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
     urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
     
     # 교체한 객체값 콘솔에 출력하기 
