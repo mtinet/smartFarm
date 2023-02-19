@@ -126,5 +126,10 @@
     marker.addListener("mouseout", function() {
       infoWindow.close();
     });
+    // 마커에 터치 이벤트 리스너 추가
+    marker.addListener("click", function() {
+      infoWindow.setContent(this.content);
+      infoWindow.open(map, this);
+    });
   }
 }

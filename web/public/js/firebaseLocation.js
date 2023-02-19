@@ -4,14 +4,14 @@ let map = null;
 function initMap() {
   // Firebase 접근 정보
   var config = {
-    apiKey: "AIzaSyA4JNrHtS9pc6QaW8dtwATWhUhs0Ni8OBI",
-    authDomain: "smartfarm-f867f.firebaseapp.com",
-    databaseURL: "https://smartfarm-f867f-default-rtdb.firebaseio.com",
-    projectId: "smartfarm-f867f",
-    storageBucket: "smartfarm-f867f.appspot.com",
-    messagingSenderId: "605663694333",
-    appId: "1:605663694333:web:ae528fa94efc794d285d94",
-    measurementId: "G-9C54BH4QG4"
+    apiKey: "AIzaSyD_g47-C90bK_BCD6DH56Z5DuHh_lf93x4",
+    authDomain: "smartfarmlocation.firebaseapp.com",
+    databaseURL: "https://smartfarmlocation-default-rtdb.firebaseio.com",
+    projectId: "smartfarmlocation",
+    storageBucket: "smartfarmlocation.appspot.com",
+    messagingSenderId: "580782206031",
+    appId: "1:580782206031:web:a3af204e4ea23fd67e8e3a",
+    measurementId: "G-GB1HRVK5RH"
   };
 
   // Firebase 앱 초기화
@@ -125,6 +125,11 @@ for (var i = 0; i < keys.length; i++) {
   });
   marker.addListener("mouseout", function() {
     infoWindow.close();
+  });
+  // 마커에 터치 이벤트 리스너 추가
+  marker.addListener("click", function() {
+    infoWindow.setContent(this.content);
+    infoWindow.open(map, this);
   });
 }
 }
