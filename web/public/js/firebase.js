@@ -25,9 +25,11 @@ ref.on("value", gotData, errData);
 function gotData(data) {
   //console.log(data.val());
   var val = data.val();
-  //console.log(val);
+  console.log(val);
   var keys = Object.keys(val);
-  //console.log(keys);
+  // console.log(keys);
+  topKey = keys[0];
+  // console.log(topKey);
   var values = Object.values(val);
   //console.log(values);
 
@@ -47,7 +49,7 @@ function gotData(data) {
     //console.log(k)
     var v = values[i];
     //console.log(v);
-    console.log(k + ":" + v);
+    // console.log(k + ":" + v);
   }
 
   // 버튼 상태 싱크

@@ -50,7 +50,7 @@ myobjInitialize = {
     'fan': 0
     }
 # myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
-urequests.patch(url+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
+urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
 urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
 print("SmartFarm has been initialized.")
 
@@ -62,7 +62,7 @@ myLocation = {
     }
 
 # myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
-urequests.patch(url+"/"+nickname+".json", json = myLocation).json()
+urequests.patch(url+"location.json", json = myLocation).json()
 urequests.patch(mapUrl+"/"+nickname+".json", json = myLocation).json()
 print("Location Info has been sent.")
 print()
@@ -85,12 +85,12 @@ while True:
     
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("LED:", response[nickname]['smartFarm']['led'], "Fan:", response[nickname]['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
     
     
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
-    if (response[nickname]['smartFarm']['led'] == 0) :
+    if (response['smartFarm']['led'] == 0) :
         led.value(0)
 
     else :
@@ -98,7 +98,7 @@ while True:
 
     
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
-    if (response[nickname]['smartFarm']['fan'] == 0) :
+    if (response['smartFarm']['fan'] == 0) :
         fan.value(0)
 
     else :
@@ -113,7 +113,7 @@ while True:
         }
     
     # myobj를 RTDB로 보내 객체 값 교체하기, patch는 특정 주소의 데이터가 변경됨
-    urequests.patch(url+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
+    urequests.patch(url+"smartFarm.json", json = myobj).json()
     urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
     
     # 교체한 객체값 콘솔에 출력하기 
