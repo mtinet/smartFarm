@@ -78,7 +78,7 @@
       valueCell.innerHTML = value;
 
       // 원하는 스타일을 적용
-      if (key === "currentTime") {
+      if (key === "updatedTime") {
         valueCell.style.color = "#000000";  // 검정색
         valueCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
       } else if (key === "fan" || key === "led") {
@@ -90,7 +90,7 @@
       }
 
       // keyCell의 색상을 검정색으로 변경
-      if (key === "currentTime") {
+      if (key === "updatedTime") {
         keyCell.style.color = "#000000";  // 검정색
         keyCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
       } else if (key === "fan" || key === "led") {
