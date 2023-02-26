@@ -18,4 +18,4 @@ else:
 
 # 시간정보 가져오기
 from timezoneChange import timeOfSeoul
-timeOfSeoul()
+print(timeOfSeoul())
