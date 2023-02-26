@@ -17,8 +17,16 @@ while ap.active() == False:
 print('Connection successful')
 print(ap.ifconfig())
 
-html = """<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-  <body><h1>Welcome to microcontrollerslab!</h1></body></html>
+html = """
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>라즈베리파이 피코 W의 Access Point 모드 테스트</h1>
+    </body>
+</html>
 """
 
 addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
