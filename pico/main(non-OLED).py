@@ -6,8 +6,8 @@ import random
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'mtinet'  # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
-lat = 37.49836
+nickname = 'test'  # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
+lat = 37.60836
 long = 126.9253
 
 
@@ -19,7 +19,6 @@ temperature = ADC(27) # 온도 감지
 light = ADC(28) # 조도 감지
 
 conversion_factor = 3.3 / 65535 # 측정값 보정 계산식 
-
 
 # 와이파이 연결하기
 wlan = network.WLAN(network.STA_IF)
@@ -38,6 +37,11 @@ else:
     print("WiFi is Connected")
     print()
     
+# 시간정보 가져오기
+from timezoneChange import timeOfSeoul
+currentTime = timeOfSeoul()
+# print(type(currentTime))
+print(currentTime)
 
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
@@ -49,7 +53,7 @@ myobjInitialize = {
     'led': 0,
     'fan': 0
     }
-# myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
+# myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
 urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
 print("SmartFarm has been initialized.")
@@ -61,7 +65,7 @@ myLocation = {
     'long': long
     }
 
-# myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
+# myLocation를 RTDB로 보내 객체 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
 urequests.patch(url+"location.json", json = myLocation).json()
 urequests.patch(mapUrl+"/"+nickname+".json", json = myLocation).json()
 print("Location Info has been sent.")
@@ -79,13 +83,21 @@ response = urequests.get(url+".json").json()
 while True:
     # 현재 DB의 정보를 가져옴
     response = urequests.get(url+".json").json() # RTDB 데이터 가져오기
+    
+    # 현재 센서로부터 측정된 값을 가져옴
     moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
     temperatureValue = round((temperature.read_u16() * conversion_factor) * 100) # 온도센서 값 읽어오기
     lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
     
+    # 현재시간 가져오기
+    currentTime = timeOfSeoul()
+    # print(type(currentTime))
+    # print(currentTime)
+                            
+    
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("currentTime:", currentTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
     
     
@@ -107,12 +119,15 @@ while True:
         
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobj = {
+        'currentTime': currentTime,
+        'fan': response['smartFarm']['fan'],
+        'led': response['smartFarm']['led'],
         'mois': moistureValue,
         'temp': temperatureValue,
         'light': lightValue        
         }
     
-    # myobj를 RTDB로 보내 객체 값 교체하기, patch는 특정 주소의 데이터가 변경됨
+    # myobj를 RTDB로 보내 객체 값 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
     urequests.patch(url+"smartFarm.json", json = myobj).json()
     urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
     
@@ -120,3 +135,4 @@ while True:
     print("Message Send")
     print(myobj)
     print()
+
