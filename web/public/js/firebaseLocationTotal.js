@@ -81,7 +81,7 @@
       if (key === "currentTime") {
         valueCell.style.color = "#FFFFFF";  // 검정색
         valueCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
-      if (key === "fan" || key === "led") {
+      } else if (key === "fan" || key === "led") {
         valueCell.style.color = "#FFA500";  // 주황색
         valueCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
       } else if (key === "mois" || key === "temp" || key === "light") {
@@ -93,7 +93,7 @@
       if (key === "currentTime") {
         keyCell.style.color = "#FFFFFF";  // 검정색
         keyCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
-      if (key === "fan" || key === "led") {
+      } else if (key === "fan" || key === "led") {
         keyCell.style.color = "#FFA500";  // 주황색
         keyCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
       } else if (key === "mois" || key === "temp" || key === "light") {
