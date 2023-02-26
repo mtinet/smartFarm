@@ -26,7 +26,7 @@ print(time_dict.json())
 # print(time_dict.json()['time'])
 
 
-def timeChange() :
+def timezoneChange() :
     # UTC 기준으로 경과한 밀리초 계산
     milliseconds_since_epoch = int(time_dict.json()['milliseconds_since_epoch'])
     print(milliseconds_since_epoch)
@@ -61,4 +61,4 @@ def timeChange() :
     output_str = "{:02d}-{:02d}-{:04d} {}:{}:{} {}".format(month, day, year, hour_str, minute_str, second_str, am_pm)
     print(output_str)
 
-timeChange()
+timezoneChange()
