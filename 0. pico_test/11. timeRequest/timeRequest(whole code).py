@@ -59,6 +59,6 @@ def timezoneChange() :
     minute_str = str(minute) if minute >= 10 else "0" + str(minute)
     second_str = str(second) if second >= 10 else "0" + str(second)
     output_str = "{:02d}-{:02d}-{:04d} {}:{}:{} {}".format(month, day, year, hour_str, minute_str, second_str, am_pm)
-    print(output_str)
+    return(output_str)
 
-timezoneChange()
+print(timezoneChange())
