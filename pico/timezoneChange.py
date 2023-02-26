@@ -1,14 +1,14 @@
 import urequests
 
-# 시간정보 가져오기
-# print("\nQuerying the current GMT+0 time:")
-time_dict = urequests.get("http://date.jsontest.com")
-# print(time_dict.json())
-# print(time_dict.json()['date'])
-# print(time_dict.json()['milliseconds_since_epoch'])
-# print(time_dict.json()['time'])
-
 def timeOfSeoul() :
+    # 시간정보 가져오기
+    # print("\nQuerying the current GMT+0 time:")
+    time_dict = urequests.get("http://date.jsontest.com")
+    # print(time_dict.json())
+    # print(time_dict.json()['date'])
+    # print(time_dict.json()['milliseconds_since_epoch'])
+    # print(time_dict.json()['time'])
+    
     # UTC 기준으로 경과한 밀리초 계산
     milliseconds_since_epoch = int(time_dict.json()['milliseconds_since_epoch'])
     total_seconds = milliseconds_since_epoch // 1000
