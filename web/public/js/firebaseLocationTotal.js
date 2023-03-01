@@ -25,7 +25,7 @@
     var refLocations = database.ref();
     refLocations.on("value", gotLocations, errData);
 
-    // 지도 생성
+    // 지도 생성, 처음 지도가 나타나는 위치를 수정하고 싶다면 아래의 lat, lng에 원하는 위치 정보를 넣으세요. 37.5, 127은 서울의 위치입니다.
     map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
       center: { lat: 37.5, lng: 127 },
