@@ -6,9 +6,11 @@ import random
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'test'  # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
-lat = 37.60836     # 위도 변수를 자신의 위도 좌표로 수정하세요.
-long = 126.9253    # 경도 변수를 자신의 경도 좌표로 수정하세요.
+nickname = 'mtinet'      # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
+lat = 37.49836           # 위도 변수를 자신의 위도 좌표로 수정하세요.
+long = 126.9253          # 경도 변수를 자신의 경도 좌표로 수정하세요.
+SSID = "U+Net454C"       # 공유기의 SSID를 따옴표 안에 넣으세요.
+password = "DDAE014478"  # 공유기의 password를 따옴표 안에 넣으세요.
 
 
 # 제어할 핀 번호 설정
@@ -24,9 +26,8 @@ conversion_factor = 3.3 / 65535 # 측정값 보정 계산식
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 if not wlan.isconnected():
-    # 와이파이 연결하기, 앞에는 SSID, 뒤는 Password를 입력함 
-    # wlan.connect("KT_GiGA_DC1E", "027612688m") # 염창중 와이파이
-    wlan.connect("U+Net454C", "DDAE014478") # 집 와이파이
+    # 와이파이 연결하기
+    wlan.connect(SSID, password)  # 12, 13번 줄에 입력한 SSID와 password가 입력됨
     print("Waiting for Wi-Fi connection", end="...")
     print()
     while not wlan.isconnected():
@@ -39,9 +40,9 @@ else:
     
 # 시간정보 가져오기
 from timezoneChange import timeOfSeoul
-currentTime = timeOfSeoul()
-# print(type(currentTime))
-print(currentTime)
+updatedTime = timeOfSeoul()
+# print(type(updatedTime))
+print(updatedTime)
 
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
@@ -90,14 +91,14 @@ while True:
     lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
     
     # 현재시간 가져오기
-    currentTime = timeOfSeoul()
-    # print(type(currentTime))
-    # print(currentTime)
+    updatedTime = timeOfSeoul()
+    # print(type(updatedTime))
+    # print(updatedTime)
                             
     
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("currentTime:", currentTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("updatedTime:", updatedTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
     
     
@@ -119,7 +120,15 @@ while True:
         
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobj = {
-        'currentTime': currentTime,
+        'updatedTime': updatedTime,
+        'mois': moistureValue,
+        'temp': temperatureValue,
+        'light': lightValue        
+        }
+    
+    # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
+    myobjGather = {
+        'updatedTime': updatedTime,
         'fan': response['smartFarm']['fan'],
         'led': response['smartFarm']['led'],
         'mois': moistureValue,
@@ -129,7 +138,7 @@ while True:
     
     # myobj를 RTDB로 보내 객체 값 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
     urequests.patch(url+"smartFarm.json", json = myobj).json()
-    urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
+    urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjGather).json()
     
     # 교체한 객체값 콘솔에 출력하기 
     print("Message Send")
