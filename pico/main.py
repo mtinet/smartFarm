@@ -8,9 +8,11 @@ import framebuf
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'mtinet'  # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
-lat = 37.49836
-long = 126.9253
+nickname = 'mtinet'      # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
+lat = 37.49836           # 위도 변수를 자신의 위도 좌표로 수정하세요.
+long = 126.9253          # 경도 변수를 자신의 경도 좌표로 수정하세요.
+SSID = "U+Net454C"       # 공유기의 SSID를 따옴표 안에 넣으세요.
+password = "DDAE014478"  # 공유기의 password를 따옴표 안에 넣으세요.
 
 
 # 제어할 핀 번호 설정
@@ -56,9 +58,8 @@ oled.show()
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 if not wlan.isconnected():
-    # 와이파이 연결하기, 앞에는 SSID, 뒤는 Password를 입력함
-    # wlan.connect("KT_GiGA_DC1E", "027612688m") # 염창중 와이파이
-    wlan.connect("U+Net454C", "DDAE014478") # 집 와이파이
+    # 와이파이 연결하기
+    wlan.connect(SSID, password)  # 12, 13번 줄에 입력한 SSID와 password가 입력됨
     print("Waiting for Wi-Fi connection", end="...")
     print()
     while not wlan.isconnected():
@@ -68,6 +69,13 @@ else:
     print(wlan.ifconfig())
     print("WiFi is Connected")
     print()
+
+
+# 시간정보 가져오기
+from timezoneChange import timeOfSeoul
+updatedTime = timeOfSeoul()
+# print(type(updatedTime))
+print(updatedTime)
 
 
 # RTDB주소
@@ -110,15 +118,22 @@ response = urequests.get(url+".json").json()
 while True:
     # 현재 DB의 정보를 가져옴
     response = urequests.get(url+".json").json() # RTDB 데이터 가져오기
+
+    # 현재 센서로부터 측정된 값을 가져옴
     moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
     temperatureValue = round((temperature.read_u16() * conversion_factor) * 100) # 온도센서 값 읽어오기
     lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
 
+    # 현재시간 가져오기
+    updatedTime = timeOfSeoul()
+    # print(type(updatedTime))
+    # print(updatedTime)
+
+
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("updatedTime:", updatedTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
-
 
     # OLED에 출력하기
     oled.fill(0)
@@ -127,29 +142,30 @@ while True:
     # 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기
     oled.blit(fb, 96, 0)
     # 글자 넣기
-    oled.text("Light: ", 0, 5)
-    oled.text(str(round(lightValue,2)), 75, 5)
-    oled.text("Temp: ", 0, 20)
-    oled.text(str(round(temperatureValue,2)), 75, 20)
-    oled.text("Moisture: ", 0, 35)
-    oled.text(str(round(moistureValue,2)), 75, 35)
+    oled.text("Light: ", 0, 0)
+    oled.text(str(round(lightValue,2)), 60, 0)
+    oled.text("Temp: ", 0, 13)
+    oled.text(str(round(temperatureValue,2)), 60, 13)
+    oled.text("Mois: ", 0, 26)
+    oled.text(str(round(temperatureValue,2)), 60, 26)
+    oled.text(str(updatedTime,2), 0, 39)
 
 
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
     if (response['smartFarm']['led'] == 0) :
         led.value(0)
-        oled.text("LED Off", 5, 50)
+        oled.text("LED Off", 5, 55)
     else :
         led.value(1)
-        oled.text("LED On", 5, 50)
+        oled.text("LED On", 5, 55)
 
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
     if (response['smartFarm']['fan'] == 0) :
         fan.value(0)
-        oled.text("Fan Off", 70, 50)
+        oled.text("Fan Off", 70, 55)
     else :
         fan.value(1)
-        oled.text("Fan On", 70, 50)
+        oled.text("Fan On", 70, 55)
 
     # OLED에 이미지와 글자가 보여지도록 하기
     oled.show()
@@ -157,14 +173,25 @@ while True:
 
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobj = {
+        'updatedTime': updatedTime,
         'mois': moistureValue,
         'temp': temperatureValue,
         'light': lightValue
         }
 
-    # myobj를 RTDB로 보내 객체 값 교체하기, patch는 특정 주소의 데이터가 변경됨
+    # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
+    myobjGather = {
+        'updatedTime': updatedTime,
+        'fan': response['smartFarm']['fan'],
+        'led': response['smartFarm']['led'],
+        'mois': moistureValue,
+        'temp': temperatureValue,
+        'light': lightValue
+        }
+
+    # myobj를 RTDB로 보내 객체 값 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
     urequests.patch(url+"smartFarm.json", json = myobj).json()
-    urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobj).json()
+    urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjGather).json()
 
     # 교체한 객체값 콘솔에 출력하기
     print("Message Send")
