@@ -105,15 +105,12 @@ while True:
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
     if (response['smartFarm']['led'] == 0) :
         led.value(0)
-
     else :
         led.value(1)
-
     
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
     if (response['smartFarm']['fan'] == 0) :
         fan.value(0)
-
     else :
         fan.value(1)
 
@@ -144,4 +141,5 @@ while True:
     print("Message Send")
     print(myobj)
     print()
+
 
