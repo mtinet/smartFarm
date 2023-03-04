@@ -73,9 +73,9 @@ else:
 
 # 시간정보 가져오기
 from timezoneChange import timeOfSeoul
-currentTime = timeOfSeoul()
-# print(type(currentTime))
-print(currentTime)
+updatedTime = timeOfSeoul()
+# print(type(updatedTime))
+print(updatedTime)
 
 
 # RTDB주소
@@ -125,14 +125,14 @@ while True:
     lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
 
     # 현재시간 가져오기
-    currentTime = timeOfSeoul()
-    # print(type(currentTime))
-    # print(currentTime)
+    updatedTime = timeOfSeoul()
+    # print(type(updatedTime))
+    # print(updatedTime)
 
 
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("currentTime:", currentTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("updatedTime:", updatedTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
 
     # OLED에 출력하기
@@ -142,31 +142,30 @@ while True:
     # 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기
     oled.blit(fb, 96, 0)
     # 글자 넣기
-    oled.text("Light: ", 0, 5)
-    oled.text(str(round(lightValue,2)), 75, 5)
-    oled.text("Light: ", 0, 20)
-    oled.text(str(round(lightValue,2)), 75, 20)
-    oled.text("Temp: ", 0, 35)
-    oled.text(str(round(temperatureValue,2)), 75, 35)
-    oled.text("Moisture: ", 0, 50)
-    oled.text(str(round(moistureValue,2)), 75, 50)
+    oled.text("Light: ", 0, 0)
+    oled.text(str(round(lightValue,2)), 60, 0)
+    oled.text("Temp: ", 0, 13)
+    oled.text(str(round(temperatureValue,2)), 60, 13)
+    oled.text("Mois: ", 0, 26)
+    oled.text(str(round(temperatureValue,2)), 60, 26)
+    oled.text(str(updatedTime,2), 0, 39)
 
 
     # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
     if (response['smartFarm']['led'] == 0) :
         led.value(0)
-        oled.text("LED Off", 5, 50)
+        oled.text("LED Off", 5, 55)
     else :
         led.value(1)
-        oled.text("LED On", 5, 50)
+        oled.text("LED On", 5, 55)
 
     # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
     if (response['smartFarm']['fan'] == 0) :
         fan.value(0)
-        oled.text("Fan Off", 70, 50)
+        oled.text("Fan Off", 70, 55)
     else :
         fan.value(1)
-        oled.text("Fan On", 70, 50)
+        oled.text("Fan On", 70, 55)
 
     # OLED에 이미지와 글자가 보여지도록 하기
     oled.show()
