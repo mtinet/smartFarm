@@ -147,7 +147,7 @@ while True:
     oled.text("Temp: ", 0, 13)
     oled.text(str(round(temperatureValue,2)), 60, 13)
     oled.text("Mois: ", 0, 26)
-    oled.text(str(round(temperatureValue,2)), 60, 26)
+    oled.text(str(round(moistureValue,2)), 60, 26)
     oled.text(str(updatedTime,2), 0, 39)
 
 
@@ -197,3 +197,4 @@ while True:
     print("Message Send")
     print(myobj)
     print()
+
