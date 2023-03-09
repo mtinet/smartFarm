@@ -5,15 +5,19 @@ import urequests
 import random
 from ssd1306 import SSD1306_I2C
 import framebuf
+import ahtx0
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'mtinet'      # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
-lat = 37.49836           # 위도 변수를 자신의 위도 좌표로 수정하세요.
-long = 126.9253          # 경도 변수를 자신의 경도 좌표로 수정하세요.
+nickname = 'donggwan'        # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
+lat = 37.5378           # 위도 변수를 자신의 위도 좌표로 수정하세요.
+long = 126.9558          # 경도 변수를 자신의 경도 좌표로 수정하세요.
 SSID = "U+Net454C"       # 공유기의 SSID를 따옴표 안에 넣으세요.
 password = "DDAE014478"  # 공유기의 password를 따옴표 안에 넣으세요.
 
+# RTDB주소
+url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
+mapUrl = "https://smartfarmlocation-default-rtdb.firebaseio.com/"
 
 # 제어할 핀 번호 설정
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
@@ -21,6 +25,10 @@ fan = Pin(5, Pin.OUT) # 팬 제어
 moisture = ADC(26) # 수분 감지
 temperature = ADC(27) # 온도 감지
 light = ADC(28) # 조도 감지
+
+# 온도, 습도 센서 설정 
+i2cTH = I2C(1, scl=Pin(15), sda=Pin(14), freq=200000) 
+sensor = ahtx0.AHT10(i2cTH)
 
 conversion_factor = 3.3 / 65535 # 측정값 보정 계산식
 
@@ -78,15 +86,10 @@ updatedTime = timeOfSeoul()
 print(updatedTime)
 
 
-# RTDB주소
-url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
-mapUrl = "https://smartfarmlocation-default-rtdb.firebaseio.com/"
-
-
 # RTDB 초기 세팅이 안되어 있는 경우 초기 세팅하기
 myobjInitialize = {
-    'led': 0,
-    'fan': 0
+    '-led-': 0,
+    '-fan-': 0
     }
 # myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
@@ -120,10 +123,11 @@ while True:
     response = urequests.get(url+".json").json() # RTDB 데이터 가져오기
 
     # 현재 센서로부터 측정된 값을 가져옴
-    moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
-    temperatureValue = round((temperature.read_u16() * conversion_factor) * 100) # 온도센서 값 읽어오기
+    humidityValue = round(sensor.relative_humidity) # 습도센서
     lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
-
+    temperatureValue = round(sensor.temperature) # 온도센서 
+    moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
+    
     # 현재시간 가져오기
     updatedTime = timeOfSeoul()
     # print(type(updatedTime))
@@ -132,7 +136,7 @@ while True:
 
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("updatedTime:", updatedTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Moisture:", moistureValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("updatedTime:", updatedTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Humidity:", humidityValue, "Temperature:", temperatureValue, "Light:", lightValue )
     print()
 
     # OLED에 출력하기
@@ -146,8 +150,8 @@ while True:
     oled.text(str(round(lightValue,2)), 60, 0)
     oled.text("Temp: ", 0, 13)
     oled.text(str(round(temperatureValue,2)), 60, 13)
-    oled.text("Mois: ", 0, 26)
-    oled.text(str(round(moistureValue,2)), 60, 26)
+    oled.text("Humi: ", 0, 26)
+    oled.text(str(round(humidityValue,2)), 60, 26)
     oled.text(str(updatedTime,2), 0, 39)
 
 
@@ -174,19 +178,21 @@ while True:
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobj = {
         'updatedTime': updatedTime,
-        'mois': moistureValue,
+        'humi': humidityValue,
+        'light': lightValue, 
         'temp': temperatureValue,
-        'light': lightValue
+        'mois': moistureValue
         }
 
     # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
     myobjGather = {
         'updatedTime': updatedTime,
-        'fan': response['smartFarm']['fan'],
-        'led': response['smartFarm']['led'],
-        'mois': moistureValue,
+        '-fan-': response['smartFarm']['fan'],
+        '-led-': response['smartFarm']['led'],
+        'humi': humidityValue,
+        'light': lightValue,
         'temp': temperatureValue,
-        'light': lightValue
+        'mois': moistureValue
         }
 
     # myobj를 RTDB로 보내 객체 값 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
