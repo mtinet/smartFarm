@@ -1,6 +1,7 @@
 let mois = 100;
 let temp = 50;
 let light = 100;
+let humi = 100;
 let fanStatus = Boolean(false);
 let ledStatus = Boolean(false);
 
@@ -34,11 +35,13 @@ function gotData(data) {
   //console.log(values);
 
   mois = val.mois;
+  humi = val.humi;
   temp = val.temp;
   light = val.light;
   ledStatus = val.led;
   fanStatus = val.fan;
   //console.log(val.mois)
+  //console.log(val.humi)
   //console.log(val.temp)
   //console.log(val.light)
   //console.log(ledStatus)
@@ -193,22 +196,44 @@ var gauge3 = Gauge(
     }
   }
 );
+// 게이지 4은 습도를 나타내도록 세팅되었으므로 최대값을 100으로 지정함
+var gauge4 = Gauge(
+  document.getElementById("gauge4"),
+  {
+    max: 100,
+    value: 0,
+    color: function(value) {
+      if(value < 20) {
+        return "#5ee432"; // 초록
+      }else if(value < 40) {
+        return "#fffa50"; // 노랑
+      }else if(value < 60) {
+        return "#f7aa38"; // 주황
+      }else {
+        return "#ef4655"; // 빨강
+      }
+    }
+  }
+);
 
 // 게이지에 값을 넣어주고, 3초마다 1.5의 반응속도로 리뉴얼함
 (function loop() {
 // 랜덤으로 값을 발생시켜 게이지의 동작을 테스트 할 때 사용
 //  var value1 = Math.random() * 100,
 //      value2 = Math.random() * 50, //온도 최대값은 50으로 조정되어 있으므로, 테스트도 0~50의 값으로 테스트 함
-//      value3 = Math.random() * 100;
+//      value3 = Math.random() * 100,
+//      value4 = Math.random() * 100;
 
 // Firebase Realtime Database로부터 넘어온 값을 각 게이지의 값에 넣어줌
   var value1 = light,
       value2 = temp,
       value3 = mois;
+      value4 = humi;
 
   gauge1.setValueAnimated(value1, 1.5);
   gauge2.setValueAnimated(value2, 1.5);
   gauge3.setValueAnimated(value3, 1.5);
+  gauge4.setValueAnimated(value4, 1.5);
 
   window.setTimeout(loop, 3000);
 })();

@@ -25,7 +25,7 @@
     var refLocations = database.ref();
     refLocations.on("value", gotLocations, errData);
 
-    // 지도 생성, 처음 지도가 나타나는 위치를 수정하고 싶다면 아래의 lat, lng에 원하는 위치 정보를 넣으세요. 37.5, 127은 서울의 위치입니다.
+    // 지도 생성
     map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
       center: { lat: 37.5, lng: 127 },
@@ -78,25 +78,25 @@
       valueCell.innerHTML = value;
 
       // 원하는 스타일을 적용
-      if (key === "updatedTime") {
+      if (key === "currentTime") {
         valueCell.style.color = "#000000";  // 검정색
         valueCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
-      } else if (key === "fan" || key === "led") {
+      } else if (key === "-fan-" || key === "-led-") {
         valueCell.style.color = "#FFA500";  // 주황색
         valueCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
-      } else if (key === "mois" || key === "temp" || key === "light") {
+      } else if (key === "mois" || key === "temp" || key === "light" || key === "humi") {
         valueCell.style.color = "#008000"; // 초록색
         valueCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
       }
 
       // keyCell의 색상을 검정색으로 변경
-      if (key === "updatedTime") {
+      if (key === "currentTime") {
         keyCell.style.color = "#000000";  // 검정색
         keyCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
-      } else if (key === "fan" || key === "led") {
+      } else if (key === "-fan-" || key === "-led-") {
         keyCell.style.color = "#FFA500";  // 주황색
         keyCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
-      } else if (key === "mois" || key === "temp" || key === "light") {
+      } else if (key === "mois" || key === "temp" || key === "light" || key === "humi") {
         keyCell.style.color = "#008000"; // 초록색
         keyCell.style.fontFamily = "Arial, sans-serif"; // 글꼴 변경
       }
