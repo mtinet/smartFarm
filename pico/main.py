@@ -9,9 +9,9 @@ import ahtx0
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'donggwan'        # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
-lat = 37.5378           # 위도 변수를 자신의 위도 좌표로 수정하세요.
-long = 126.9558          # 경도 변수를 자신의 경도 좌표로 수정하세요.
+nickname = 'mtinet'        # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
+lat = 37.49836           # 위도 변수를 자신의 위도 좌표로 수정하세요.
+long = 126.9253          # 경도 변수를 자신의 경도 좌표로 수정하세요.
 SSID = "U+Net454C"       # 공유기의 SSID를 따옴표 안에 넣으세요.
 password = "DDAE014478"  # 공유기의 password를 따옴표 안에 넣으세요.
 
@@ -88,12 +88,17 @@ print(updatedTime)
 
 # RTDB 초기 세팅이 안되어 있는 경우 초기 세팅하기
 myobjInitialize = {
+    'led': 0,
+    'fan': 0
+    }
+# RTDB 초기 세팅이 안되어 있는 경우 초기 세팅하기
+myobjInitializeGather = {
     '-led-': 0,
     '-fan-': 0
     }
 # myobjInitialize를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
-urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitialize).json()
+urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjInitializeGather).json()
 print("SmartFarm has been initialized.")
 
 
