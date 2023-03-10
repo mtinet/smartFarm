@@ -137,26 +137,7 @@ while True:
     lightValue = round(100-((light.read_u16()/65535) * 100)) # 조도센서 값 읽어오기
     temperatureValue = round(sensor.temperature) # 온도센서 
     moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
-    
-    # 수분센서의 값에 따라 물 펌프 제어하기
-    if (moistureValue < moistureStandardValue):
-        pwm.duty_u16(50000)
-        time.sleep(3)
-        pwm.duty_u16(0)
-        time.sleep(1)
-    else:
-        pwm.duty_u16(0)
-        time.sleep(3)
-        
-    # 온센서의 값에 따라 팬 제어하기
-    if (temperatureValue > temperatureStandardValue):
-        fan.value(1)
-        time.sleep(5)
-        fan.value(0)
-        time.sleep(1)
-    else:
-        fan.value(0)
-        time.sleep(3)
+
     
     # 현재시간 가져오기
     updatedTime = timeOfSeoul()
@@ -238,6 +219,23 @@ while True:
     print("Message Send")
     print(myobj)
     print()
-
-
-
+    
+    # 수분센서의 값에 따라 물 펌프 제어하기
+    if (moistureValue < moistureStandardValue):
+        pwm.duty_u16(50000)
+        time.sleep(3)
+        pwm.duty_u16(0)
+        time.sleep(1)
+    else:
+        pwm.duty_u16(0)
+        time.sleep(3)
+        
+    # 온센서의 값에 따라 팬 제어하기
+    if (temperatureValue > temperatureStandardValue):
+        fan.value(1)
+        time.sleep(5)
+        fan.value(0)
+        time.sleep(1)
+    else:
+        fan.value(0)
+        time.sleep(3)
