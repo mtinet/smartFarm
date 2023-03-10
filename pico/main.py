@@ -12,8 +12,8 @@ import ahtx0
 nickname = 'mtinet'        # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
 lat = 37.49836           # 위도 변수를 자신의 위도 좌표로 수정하세요.
 long = 126.9253          # 경도 변수를 자신의 경도 좌표로 수정하세요.
-SSID = "U+Net454C"       # 공유기의 SSID를 따옴표 안에 넣으세요.
-password = "DDAE014478"  # 공유기의 password를 따옴표 안에 넣으세요.
+SSID = "KT_GiGA_DC1E"       # 공유기의 SSID를 따옴표 안에 넣으세요.
+password = "027612688m"  # 공유기의 password를 따옴표 안에 넣으세요.
 
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
@@ -141,7 +141,13 @@ while True:
 
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
-    print("updatedTime:", updatedTime, "LED:", response['smartFarm']['led'], "Fan:", response['smartFarm']['fan'], "Humidity:", humidityValue, "Temperature:", temperatureValue, "Light:", lightValue )
+    print("updatedTime:", updatedTime,
+          "LED:", response['smartFarm']['led'],
+          "Fan:", response['smartFarm']['fan'],
+          "Humidity:", humidityValue,
+          "Light:", lightValue,
+          "Temperature:", temperatureValue,
+          "Moisture:", moistureValue)
     print()
 
     # OLED에 출력하기
