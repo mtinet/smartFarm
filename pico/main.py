@@ -1,4 +1,4 @@
-from machine import Pin, I2C, ADC
+from machine import Pin, I2C, ADC, PWM
 import network
 import time
 import urequests
@@ -9,11 +9,13 @@ import ahtx0
 
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
-nickname = 'mtinet'        # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
-lat = 37.49836           # 위도 변수를 자신의 위도 좌표로 수정하세요.
-long = 126.9253          # 경도 변수를 자신의 경도 좌표로 수정하세요.
-SSID = "KT_GiGA_DC1E"       # 공유기의 SSID를 따옴표 안에 넣으세요.
-password = "027612688m"  # 공유기의 password를 따옴표 안에 넣으세요.
+SSID = "KT_GiGA_DC1E"         # 공유기의 SSID를 따옴표 안에 넣으세요.
+password = "027612688m"       # 공유기의 password를 따옴표 안에 넣으세요.
+nickname = 'mtinet'           # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
+lat = 37.49836                # 위도 변수를 자신의 위도 좌표로 수정하세요.
+long = 126.9253               # 경도 변수를 자신의 경도 좌표로 수정하세요.
+moistureStandardValue = 10    # 수분센서 기준값을 설정하세요. 수분 센서 측정값이 이 값보다 작을 때 물 펌프가 동작합니다.
+temperatureStandardValue = 20 # 온도센서 기준값을 설정하세요. 온도 센서 측정값이 이 값보다 클 때 팬이 동작합니다. 
 
 # RTDB주소
 url = "https://smartfarm-f867f-default-rtdb.firebaseio.com/"
@@ -21,9 +23,12 @@ mapUrl = "https://smartfarmlocation-default-rtdb.firebaseio.com/"
 
 # 제어할 핀 번호 설정
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
-fan = Pin(5, Pin.OUT) # 팬 제어
+fan = Pin(5, Pin.OUT) # 팬 제어 핀
+pwm = PWM(Pin(9)) # 물 펌프 제어 핀
+pwm.freq(1000)
+
+# 수분, 조도 센서 설정
 moisture = ADC(26) # 수분 감지
-temperature = ADC(27) # 온도 감지
 light = ADC(28) # 조도 감지
 
 # 온도, 습도 센서 설정 
@@ -129,15 +134,34 @@ while True:
 
     # 현재 센서로부터 측정된 값을 가져옴
     humidityValue = round(sensor.relative_humidity) # 습도센서
-    lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
+    lightValue = round(100-((light.read_u16()/65535) * 100)) # 조도센서 값 읽어오기
     temperatureValue = round(sensor.temperature) # 온도센서 
     moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
+    
+    # 수분센서의 값에 따라 물 펌프 제어하기
+    if (moistureValue < moistureStandardValue):
+        pwm.duty_u16(50000)
+        time.sleep(3)
+        pwm.duty_u16(0)
+        time.sleep(1)
+    else:
+        pwm.duty_u16(0)
+        time.sleep(3)
+        
+    # 온센서의 값에 따라 팬 제어하기
+    if (temperatureValue > temperatureStandardValue):
+        fan.value(1)
+        time.sleep(5)
+        fan.value(0)
+        time.sleep(1)
+    else:
+        fan.value(0)
+        time.sleep(3)
     
     # 현재시간 가져오기
     updatedTime = timeOfSeoul()
     # print(type(updatedTime))
     # print(updatedTime)
-
 
     # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
     print("Status Check")
@@ -214,4 +238,6 @@ while True:
     print("Message Send")
     print(myobj)
     print()
+
+
 
