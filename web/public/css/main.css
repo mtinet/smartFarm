@@ -28,6 +28,15 @@ pre {
   margin: 0;
 }
 
+.toggle-on {
+  filter: brightness(100%);
+}
+
+.toggle-off {
+  filter: brightness(50%);
+}
+
+
 @media only screen and (min-device-width: 768px) {
   .gauge-container {
     width: 200px;
