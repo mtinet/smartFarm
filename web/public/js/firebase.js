@@ -57,20 +57,21 @@ function gotData(data) {
 
   // 버튼 상태 싱크
   if (ledStatus == false) {
-    // ledButton 토글
-    const ledButton = document.getElementById('ledButton');
-    ledButton.style.filter = "brightness(50%)";
+    ledButton.classList.add("toggle-off");
+    ledButton.classList.remove("toggle-on");
   } else {
-    ledButton.style.filter = "brightness(100%)";
+    ledButton.classList.add("toggle-on");
+    ledButton.classList.remove("toggle-off");
   }
 
   if (fanStatus == false) {
-    // fanButton 토글
-    const fanButton = document.getElementById('fanButton');
-    fanButton.style.filter = "brightness(50%)";
-  }else {
-    fanButton.style.filter = "brightness(100%)";
+    fanButton.classList.add("toggle-off");
+    fanButton.classList.remove("toggle-on");
+  } else {
+    fanButton.classList.add("toggle-on");
+    fanButton.classList.remove("toggle-off");
   }
+
 }
 
 function errData(err) {
@@ -80,60 +81,46 @@ function errData(err) {
 
 // led 상태를 확인하고 1(켜짐)이면 0(꺼짐)으로, 0(꺼짐)이면 1(켜짐)으로 Firebase 데이터를 업데이트 하고, 버튼 이미지의 밝기를 조정함
 function ledOnOff() {
+  const ledButton = document.getElementById('ledButton');
   if (ledStatus == false) {
     ledStatus = true;
-
     var ref = database.ref('smartFarm');
     ref.update({
       led: 1
-    })
-
-    // ledButton 토글
-    const ledButton = document.getElementById('ledButton');
-    ledButton.style.filter = "brightness(100%)";
-
+    });
+    ledButton.classList.add("toggle-on");
+    ledButton.classList.remove("toggle-off");
   } else {
     ledStatus = false;
-
     var ref = database.ref('smartFarm');
     ref.update({
       led: 0
-    })
-
-    // fanButton 토글
-    const ledButton = document.getElementById('ledButton');
-    ledButton.style.filter = "brightness(50%)";
+    });
+    ledButton.classList.add("toggle-off");
+    ledButton.classList.remove("toggle-on");
   }
-  //console.log(ledStatus);
 }
 
 // fan 상태를 확인하고 1(켜짐)이면 0(꺼짐)으로, 0(꺼짐)이면 1(켜짐)으로 Firebase 데이터를 업데이트 하고, 버튼 이미지의 밝기를 조정함
 function fanOnOff() {
+  const fanButton = document.getElementById('fanButton');
   if (fanStatus == false) {
     fanStatus = true;
-
     var ref = database.ref('smartFarm');
     ref.update({
       fan: 1
-    })
-
-    // 토글 할 버튼 선택 (fanButton)
-    const fanButton = document.getElementById('fanButton');
-    fanButton.style.filter = "brightness(100%)";
-
+    });
+    fanButton.classList.add("toggle-on");
+    fanButton.classList.remove("toggle-off");
   } else {
     fanStatus = false;
-
     var ref = database.ref('smartFarm');
     ref.update({
       fan: 0
-    })
-
-    // 토글 할 버튼 선택 (fanButton)
-    const fanButton = document.getElementById('fanButton');
-    fanButton.style.filter = "brightness(50%)";
+    });
+    fanButton.classList.add("toggle-off");
+    fanButton.classList.remove("toggle-on");
   }
-  //console.log(fanStatus);
 }
 
 // Firebase의 Realtime Database에 저장되어 있는 조도(light), 온도(temp), 습도() 정보를 가져와서 게이지 1, 2, 3에 뿌려서 표현하게 함, Firebase의 정보가 업데이트 되면 실시간으로 게이지가 변함
