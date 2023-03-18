@@ -15,6 +15,7 @@
     /* float: left; */
     padding: 10px;
     overflow: hidden;
+    margin: 0 auto; /* 가운데 정렬을 위해 추가한 코드 */
   }
   .gauge-container.one > .gauge > .dial {
     stroke: #334455;
