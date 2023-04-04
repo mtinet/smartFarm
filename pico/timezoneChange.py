@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim. 
+
 import urequests
 
 def timeOfSeoul() :
