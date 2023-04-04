@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim. 
+
 from machine import Pin
 import time
 from dht import DHT11, InvalidChecksum
