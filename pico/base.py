@@ -8,8 +8,8 @@ import random
 
 # 제어할 핀 번호 설정
 from machine import Pin
-led = Pin(26, Pin.OUT)
-fan = Pin(27, Pin.OUT)
+led = Pin(1, Pin.OUT)
+fan = Pin(5, Pin.OUT)
 
 
 # 와이파이 연결하기
