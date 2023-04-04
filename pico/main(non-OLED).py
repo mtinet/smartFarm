@@ -1,10 +1,11 @@
+# This code was written by Juhyun Kim.  
+
 from machine import Pin, I2C, ADC
 import network
 import time
 import urequests
 import random
 import ahtx0
-
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
 nickname = 'mtinet'      # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
