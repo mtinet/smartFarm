@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim. 
+
 import utime
 from machine import Pin, I2C
 
