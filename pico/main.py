@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim. 
+
 from machine import Pin, I2C, ADC, PWM
 import network
 import time
@@ -6,7 +8,6 @@ import random
 from ssd1306 import SSD1306_I2C
 import framebuf
 import ahtx0
-
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
 SSID = "KT_GiGA_DC1E"         # 공유기의 SSID를 따옴표 안에 넣으세요.
