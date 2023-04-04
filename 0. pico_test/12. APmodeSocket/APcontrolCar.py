@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim. 
+
 import socket
 import network
 import machine
