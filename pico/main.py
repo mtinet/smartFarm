@@ -30,7 +30,7 @@ pwm.freq(1000)
 
 # 수분, 조도 센서 설정
 moisture = ADC(26) # 수분 감지
-light = ADC(28) # 조도 감지
+light = ADC(27) # 조도 감지
 
 # 온도, 습도 센서 설정 
 i2cTH = I2C(1, scl=Pin(15), sda=Pin(14), freq=200000) 
