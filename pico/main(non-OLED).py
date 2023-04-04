@@ -22,8 +22,7 @@ mapUrl = "https://smartfarmlocation-default-rtdb.firebaseio.com/"
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
 fan = Pin(5, Pin.OUT) # 팬 제어
 moisture = ADC(26) # 수분 감지
-temperature = ADC(27) # 온도 감지
-light = ADC(28) # 조도 감지
+light = ADC(27) # 조도 감지
 
 # 온도, 습도 센서 설정 
 i2cTH = I2C(1, scl=Pin(15), sda=Pin(14), freq=200000) 
