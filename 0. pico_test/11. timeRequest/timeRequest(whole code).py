@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim. 
+
 import network
 import time
 import urequests
