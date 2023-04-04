@@ -9,19 +9,19 @@ PASSWORD = "DDAE014478"
 
 def move_forward():
     print ("Forward")
-    
+
 def move_backward():
     print ("Backward")
-    
+
 def move_stop():
     print ("Stop")
-    
+
 def move_left():
     print ("Left")
-    
+
 def move_right():
     print ("Right")
-    
+
 def connect():
     #Connect to WLAN
     wlan = network.WLAN(network.STA_IF)
@@ -33,7 +33,7 @@ def connect():
     ip = wlan.ifconfig()[0]
     print(f'Connected on {ip}')
     return ip
-    
+
 def open_socket(ip):
     # Open a socket
     address = (ip, 80)
@@ -103,4 +103,3 @@ try:
     serve(connection)
 except KeyboardInterrupt:
     machine.reset()
-

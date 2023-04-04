@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 from time import sleep
 import machine
 from machine import Pin, PWM
@@ -5,7 +7,7 @@ from machine import Pin, PWM
 # 아날로그 값 읽기
 analog_valueV = machine.ADC(26)
 analog_valueH = machine.ADC(27)
-  
+
 
 # 서보 핀, 주파수 설정
 servo0 = PWM(Pin(0))
@@ -18,8 +20,8 @@ def setAngle(servoName, angle):
     servo = servoName
     a = int(((((angle) * 2)/ 180) + 0.5)/20 * 65535)
     servo.duty_u16(a)
-    
-# 반복동작 
+
+# 반복동작
 while True:
     readingV = analog_valueV.read_u16()/16
     readingH = analog_valueH.read_u16()/16
@@ -29,4 +31,3 @@ while True:
     setAngle(servo0, readingV)
     setAngle(servo1, readingH)
     sleep(0.1)
-

@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 import firebase_admin
 from firebase_admin import credentials, storage
 

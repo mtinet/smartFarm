@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 from machine import Pin
 from utime import sleep
 
@@ -17,5 +19,3 @@ led.off()
 sleep(0.2)
 
 import main
-
-

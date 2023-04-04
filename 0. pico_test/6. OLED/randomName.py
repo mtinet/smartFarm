@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 from machine import Pin, I2C
 from ssd1306 import SSD1306_I2C
 import random
@@ -14,6 +16,6 @@ while True:
     ranX = random.randint(0, 100)
     ranY = random.randint(0, 60)
     oled.text(cmd[ran], ranX, ranY)
-    
+
     oled.show()
     time.sleep(1)

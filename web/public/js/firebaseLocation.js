@@ -1,3 +1,5 @@
+// This code was written by Juhyun Kim.
+
 // GPS좌표 및 위치 리음 설정
 let lat = 0;
 let long = 0;

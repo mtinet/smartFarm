@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 import socket
 
 HOST,PORT = '127.0.0.1',8082

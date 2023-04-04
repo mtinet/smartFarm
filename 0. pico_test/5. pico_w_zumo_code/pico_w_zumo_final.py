@@ -19,7 +19,7 @@ def move_forward():
     Mot_B_Forward.value(1)
     Mot_A_Back.value(0)
     Mot_B_Back.value(0)
-    
+
 def move_backward():
     Mot_A_Forward.value(0)
     Mot_B_Forward.value(0)
@@ -46,7 +46,7 @@ def move_right():
 
 #Stop the robot as soon as possible
 move_stop()
-    
+
 def connect():
     #Connect to WLAN
     wlan = network.WLAN(network.STA_IF)
@@ -58,7 +58,7 @@ def connect():
     ip = wlan.ifconfig()[0]
     print(f'Connected on {ip}')
     return ip
-    
+
 def open_socket(ip):
     # Open a socket
     address = (ip, 80)
@@ -128,5 +128,3 @@ try:
     serve(connection)
 except KeyboardInterrupt:
     machine.reset()
-
-    

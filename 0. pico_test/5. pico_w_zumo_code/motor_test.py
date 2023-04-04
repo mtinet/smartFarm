@@ -11,7 +11,7 @@ def move_forward():
     Mot_B_Forward.value(1)
     Mot_A_Back.value(0)
     Mot_B_Back.value(0)
-    
+
 def move_backward():
     Mot_A_Forward.value(0)
     Mot_B_Forward.value(0)

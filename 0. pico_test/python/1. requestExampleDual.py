@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 import json
 import requests
 import random
@@ -19,4 +21,3 @@ print(response1)
 myobj = {'ㅋㅋ': 'ㄴㄴ', 'light': random.randrange(0,100), 'temp': random.randrange(0, 50), 'humi': random.randrange(0,100)}
 requests.patch(url+"smartFarm.json", json = myobj, verify=False).json()
 requests.patch(url1+"smartFarm.json", json = myobj, verify=False).json()
-

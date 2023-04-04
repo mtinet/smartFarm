@@ -1,3 +1,5 @@
+// This code was written by Juhyun Kim.
+
 /* global window, define, module */
 (function(global, factory) {
   var Gauge = factory(global);

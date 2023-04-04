@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 from time import sleep
 from machine import Pin, PWM
 
@@ -12,8 +14,8 @@ def setAngle(servoName, angle):
     servo = servoName
     a = int(((((angle) * 2)/ 180) + 0.5)/20 * 65535)
     servo.duty_u16(a)
-    
-# 반복동작 
+
+# 반복동작
 while True:
     setAngle(servo0, 0)
     setAngle(servo1, 0)

@@ -1,3 +1,5 @@
+  // This code was written by Juhyun Kim.
+
   let database = null;
   let map = null;
 

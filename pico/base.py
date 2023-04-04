@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 from machine import Pin, I2C
 import network
 import time
@@ -32,7 +34,7 @@ myobjInitialize = {
     'fan': 1
     }
 urequests.patch(url+"smartFarm.json", json = myobjInitialize).json()
-    
+
 # DB 내역 가져오기
 response = urequests.get(url+".json").json()
 # byte형태의 데이터를 json으로 변경했기 때문에 메모리를 닫아주는 일을 하지 않아도 됨
@@ -44,13 +46,13 @@ while True:
     # 현재 DB의 정보를 가져옴
     response = urequests.get(url+".json").json()
     print("led:", response['smartFarm']['led'], "fan:", response['smartFarm']['fan'])
-    
+
     # 현재 DB의 led 키 값의 상태에 따라 led 26번을 제어
     if (response['smartFarm']['led'] == 0) :
         led.value(1)
     else :
         led.value(0)
-    
+
     # 현재 DB의 fan 키 값의 상태에 따라 led 27번을 제어
     if (response['smartFarm']['fan'] == 0) :
         fan.value(1)
@@ -67,6 +69,3 @@ while True:
     print(myobj)
     print("Message Sent.")
     print()
-
-
-
