@@ -272,4 +272,6 @@ while True:
 ```
 #### 13. pico 폴더에 있는 main.py파일과 ssd1306.py파일을 pico w에 함께 넣어야 OLED로 모니터링이 됩니다.  
 #### 14. main.py, main(non_OLED).py 파일은 Firebase의 값에 따라 LED, Fan을 제어하고, 센서로부터 측정된 Moisture, Temperature, Light값을 Firebase로 보낼 수 있도록 세팅 되어 있습니다.  
-![[최종 테스트 영상](https://photos.google.com/share/AF1QipPdZMQIuR6TbsuhAgzuiSDbi6S7oMbunZZFA7i8bEVHT8tvyCN1nLGigmS2tvqPVQ/photo/AF1QipNA8Qm0aDRLaN9r_u2-HEUlCFJ6J7ueXP8NmX5M?key=dzZmd3NhNlJpeEpDbGVHVl9jQkd4bDhMZXVYYXJR)](https://user-images.githubusercontent.com/13882302/230064017-2cd263e7-b848-4a22-85c9-1d2002f7303b.png)  
+
+#### 아래 이미지를 클릭하면 최종 테스트 영상으로 넘어갑니다.  
+![[](https://photos.google.com/share/AF1QipPdZMQIuR6TbsuhAgzuiSDbi6S7oMbunZZFA7i8bEVHT8tvyCN1nLGigmS2tvqPVQ/photo/AF1QipNA8Qm0aDRLaN9r_u2-HEUlCFJ6J7ueXP8NmX5M?key=dzZmd3NhNlJpeEpDbGVHVl9jQkd4bDhMZXVYYXJR)](https://user-images.githubusercontent.com/13882302/230064017-2cd263e7-b848-4a22-85c9-1d2002f7303b.png)  
