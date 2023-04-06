@@ -91,6 +91,20 @@ updatedTime = timeOfSeoul()
 # print(type(updatedTime))
 print(updatedTime)
 
+# OLED에 출력하기
+oled.fill(0)
+# 프레임버퍼로 로고 불러오기(이미지 사이즈는  32x32)
+fb = framebuf.FrameBuffer(buffer, 32, 32, framebuf.MONO_HLSB)
+# 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기
+oled.blit(fb, 96, 0)
+# 글자 넣기
+oled.text("WiFi", 0, 20)
+oled.text("is Connected", 0, 35)
+oled.text(updatedTime, 0, 50)
+# 이미지와 글자가 보여지도록 하기
+oled.show()
+time.sleep(1)
+
 
 # RTDB 초기 세팅이 안되어 있는 경우 초기 세팅하기
 myobjInitialize = {
@@ -117,8 +131,19 @@ myLocation = {
 # myLocation를 RTDB로 보내 객체 교체하기, patch는 특정 주소의 데이터가 변경됨
 urequests.patch(url+"location.json", json = myLocation).json()
 urequests.patch(mapUrl+"/"+nickname+".json", json = myLocation).json()
-print("Location Info has been sent.")
+print("Location Info has been sent")
 print()
+# OLED에 출력하기
+oled.fill(0)
+# 프레임버퍼로 로고 불러오기(이미지 사이즈는  32x32)
+fb = framebuf.FrameBuffer(buffer, 32, 32, framebuf.MONO_HLSB)
+# 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기
+oled.blit(fb, 96, 0)
+# 글자 넣기
+oled.text("Location Info", 0, 25)
+oled.text("has been sent", 0, 40)
+# 이미지와 글자가 보여지도록 하기
+oled.show()
 
 
 # RTDB 내역 가져오기
