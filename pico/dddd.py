@@ -1,3 +1,5 @@
+# 103 오류가 나면 강제로 껐다 켜는 코드... 
+
 import os
 import time
 from ssd1306 import SSD1306_I2C
