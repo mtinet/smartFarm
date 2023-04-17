@@ -9,6 +9,7 @@ import random
 from ssd1306 import SSD1306_I2C
 import framebuf
 import ahtx0
+import os
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
 SSID = "KT_GiGA_DC1E"         # 공유기의 SSID를 따옴표 안에 넣으세요.
@@ -156,117 +157,126 @@ response = urequests.get(url+".json").json()
 
 
 while True:
-    # 현재 DB의 정보를 가져옴
-    response = urequests.get(url+".json").json() # RTDB 데이터 가져오기
+    try:
+        # 현재 DB의 정보를 가져옴
+        response = urequests.get(url+".json").json() # RTDB 데이터 가져오기
 
-    # 현재 센서로부터 측정된 값을 가져옴
-    humidityValue = round(sensor.relative_humidity) # 습도센서
-    lightValue = round(100-((light.read_u16()/65535) * 100)) # 조도센서 값 읽어오기
-    temperatureValue = round(sensor.temperature) # 온도센서 
-    moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
+        # 현재 센서로부터 측정된 값을 가져옴
+        humidityValue = round(sensor.relative_humidity) # 습도센서
+        lightValue = round(100-((light.read_u16()/65535) * 100)) # 조도센서 값 읽어오기
+        temperatureValue = round(sensor.temperature) # 온도센서 
+        moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
 
-    
-    # 현재시간 가져오기
-    updatedTime = timeOfSeoul()
-    # print(type(updatedTime))
-    # print(updatedTime)
-
-    # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
-    print("Status Check")
-    print("updatedTime:", updatedTime,
-          "LED:", response['smartFarm']['led'],
-          "Fan:", response['smartFarm']['fan'],
-          "Humidity:", humidityValue,
-          "Light:", lightValue,
-          "Temperature:", temperatureValue,
-          "Moisture:", moistureValue)
-    print()
-
-    # OLED에 출력하기
-    oled.fill(0)
-    # 프레임버퍼로 로고 불러오기(이미지 사이즈는  32x32)
-    fb = framebuf.FrameBuffer(buffer, 32, 32, framebuf.MONO_HLSB)
-    # 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기
-    oled.blit(fb, 96, 0)
-    # 글자 넣기
-    oled.text("Light: ", 0, 0)
-    oled.text(str(round(lightValue,2)), 60, 0)
-    oled.text("Temp: ", 0, 13)
-    oled.text(str(round(temperatureValue,2)), 60, 13)
-    oled.text("Humi: ", 0, 26)
-    oled.text(str(round(humidityValue,2)), 60, 26)
-    oled.text(str(updatedTime,2), 0, 39)
-
-
-    # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
-    if (response['smartFarm']['led'] == 0) :
-        led.value(0)
-        oled.text("LED Off", 5, 55)
-    else :
-        led.value(1)
-        oled.text("LED On", 5, 55)
-
-    # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
-    if (response['smartFarm']['fan'] == 0) :
-        fan.value(0)
-        oled.text("Fan Off", 70, 55)
-    else :
-        fan.value(1)
-        oled.text("Fan On", 70, 55)
-
-    # OLED에 이미지와 글자가 보여지도록 하기
-    oled.show()
-
-
-    # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
-    myobj = {
-        'updatedTime': updatedTime,
-        'humi': humidityValue,
-        'light': lightValue, 
-        'temp': temperatureValue,
-        'mois': moistureValue
-        }
-
-    # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
-    myobjGather = {
-        'updatedTime': updatedTime,
-        '-fan-': response['smartFarm']['fan'],
-        '-led-': response['smartFarm']['led'],
-        'humi': humidityValue,
-        'light': lightValue,
-        'temp': temperatureValue,
-        'mois': moistureValue
-        }
-
-    # myobj를 RTDB로 보내 객체 값 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
-    urequests.patch(url+"smartFarm.json", json = myobj).json()
-    urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjGather).json()
-
-    # 교체한 객체값 콘솔에 출력하기
-    print("Message Send")
-    print(myobj)
-    print()
-    
-    # 수분센서의 값에 따라 물 펌프 제어하기
-    if (moistureValue < moistureStandardValue):
-        pwm.duty_u16(50000)
-        time.sleep(3)
-        pwm.duty_u16(0)
-        time.sleep(1)
-    else:
-        pwm.duty_u16(0)
-        time.sleep(3)
         
-    # 온센서의 값에 따라 팬 제어하기
-    if (temperatureValue > temperatureStandardValue):
-        fan.value(1)
-        time.sleep(5)
-        fan.value(0)
-        time.sleep(1)
-    else:
-        fan.value(0)
-        time.sleep(3)
+        # 현재시간 가져오기
+        updatedTime = timeOfSeoul()
+        # print(type(updatedTime))
+        # print(updatedTime)
+
+        # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
+        print("Status Check")
+        print("updatedTime:", updatedTime,
+              "LED:", response['smartFarm']['led'],
+              "Fan:", response['smartFarm']['fan'],
+              "Humidity:", humidityValue,
+              "Light:", lightValue,
+              "Temperature:", temperatureValue,
+              "Moisture:", moistureValue)
+        print()
+
+        # OLED에 출력하기
+        oled.fill(0)
+        # 프레임버퍼로 로고 불러오기(이미지 사이즈는  32x32)
+        fb = framebuf.FrameBuffer(buffer, 32, 32, framebuf.MONO_HLSB)
+        # 프레임 버퍼에서 OLED 디스플레이로 이미지 옮기기
+        oled.blit(fb, 96, 0)
+        # 글자 넣기
+        oled.text("Light: ", 0, 0)
+        oled.text(str(round(lightValue,2)), 60, 0)
+        oled.text("Temp: ", 0, 13)
+        oled.text(str(round(temperatureValue,2)), 60, 13)
+        oled.text("Humi: ", 0, 26)
+        oled.text(str(round(humidityValue,2)), 60, 26)
+        oled.text(str(updatedTime,2), 0, 39)
+
+
+        # 현재 RTDB의 led 키 값의 상태에 따라 LED 핀(1번)을 제어
+        if (response['smartFarm']['led'] == 0) :
+            led.value(0)
+            oled.text("LED Off", 5, 55)
+        else :
+            led.value(1)
+            oled.text("LED On", 5, 55)
+
+        # 현재 RTDB의 fan 키 값의 상태에 따라 Fan 핀(5번)을 제어
+        if (response['smartFarm']['fan'] == 0) :
+            fan.value(0)
+            oled.text("Fan Off", 70, 55)
+        else :
+            fan.value(1)
+            oled.text("Fan On", 70, 55)
+
+        # OLED에 이미지와 글자가 보여지도록 하기
+        oled.show()
+
+
+        # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
+        myobj = {
+            'updatedTime': updatedTime,
+            'humi': humidityValue,
+            'light': lightValue, 
+            'temp': temperatureValue,
+            'mois': moistureValue
+            }
+
+        # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
+        myobjGather = {
+            'updatedTime': updatedTime,
+            '-fan-': response['smartFarm']['fan'],
+            '-led-': response['smartFarm']['led'],
+            'humi': humidityValue,
+            'light': lightValue,
+            'temp': temperatureValue,
+            'mois': moistureValue
+            }
+
+        # myobj를 RTDB로 보내 객체 값 교체하기, patch는 정해진 키값에 해당하는 데이터가 변경됨, post는 특정주소를 만들고 데이터를 누적시킴
+        urequests.patch(url+"smartFarm.json", json = myobj).json()
+        urequests.patch(mapUrl+"/"+nickname+"/"+"smartFarm.json", json = myobjGather).json()
+
+        # 교체한 객체값 콘솔에 출력하기
+        print("Message Send")
+        print(myobj)
+        print()
+        
+        # 수분센서의 값에 따라 물 펌프 제어하기
+        if (moistureValue < moistureStandardValue):
+            pwm.duty_u16(50000)
+            time.sleep(3)
+            pwm.duty_u16(0)
+            time.sleep(1)
+        else:
+            pwm.duty_u16(0)
+            time.sleep(3)
+            
+        # 온센서의 값에 따라 팬 제어하기
+        if (temperatureValue > temperatureStandardValue):
+            fan.value(1)
+            time.sleep(5)
+            fan.value(0)
+            time.sleep(1)
+        else:
+            fan.value(0)
+            time.sleep(3)
+        
+        gc.collect()
     
-    gc.collect()
-
-
+    except OSError as e:
+        if e.args[0] == 103:
+            print("Connection aborted. Rebooting Raspberry Pi Pico W...")
+            machine.reset()
+        else:
+            raise
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        # 오류 처리를 위한 추가 코드 (필요한 경우)
