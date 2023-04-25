@@ -272,8 +272,8 @@ while True:
         gc.collect()
     
     except OSError as e:
-        if e.args[0] == 103:
-            print("Connection aborted. Rebooting Raspberry Pi Pico W...")
+        if e.args[0] in (103, 104):
+            print(f"Connection error {e.args[0]}. Rebooting Raspberry Pi Pico W...")
             machine.reset()
         else:
             raise
