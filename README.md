@@ -17,6 +17,9 @@ This code was written by Juhyun Kim.
 #### 2. 본 smartFarm의 운용 구조  
 ![2](https://user-images.githubusercontent.com/13882302/210129908-b2e48b08-0a86-4980-ba4a-a07fab87f81c.png)
 
+#### 3. 회로도  
+![3](https://user-images.githubusercontent.com/13882302/234309152-64a01e5e-8437-4eea-beb2-fcdd8aa3d13b.png)
+
 ---
 ---
 ## 각 세그먼트의 특징
