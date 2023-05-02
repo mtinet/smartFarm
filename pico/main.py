@@ -276,7 +276,8 @@ while True:
             print(f"Connection error {e.args[0]}. Rebooting Raspberry Pi Pico W...")
             machine.reset()
         else:
-            raise
+            print(f"Unexpected OSError: {e}")
+            machine.reset()
     except Exception as e:
         print(f"Unexpected error: {e}")
-        # 오류 처리를 위한 추가 코드 (필요한 경우)
+        machine.reset()
