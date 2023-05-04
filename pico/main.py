@@ -174,16 +174,20 @@ while True:
         # print(updatedTime)
         
         # 현재 시간에서 시간과 분을 분리
-        current_hour = int(updatedTime[:2])
-        current_minute = int(updatedTime[3:5])
+        current_hour = int(updatedTime[11:13])
+        current_minute = int(updatedTime[14:16])
+        # print(current_hour)
+        # print(current_minute)
         
         # 짝수 시간의 정각이 되면 시스템을 리부트
-        if current_hour % 2 == 0 and current_minute == 9:
+        if current_hour % 2 == 0 and current_minute == 0:
             # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
             myobj = {
                 'rebootedTime': updatedTime
                 }
             urequests.patch(url+"smartFarm.json", json = myobj).json()
+            print("reboot the system")
+            time.sleep(1)
             machine.reset()
 
         # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
@@ -287,11 +291,14 @@ while True:
     except OSError as e:
         if e.args[0] in (103,104):
             print("Connection aborted. Rebooting Raspberry Pi Pico W...")
+            time.sleep(1)
             machine.reset()
         else:
             print(f"Unexpected OSError: {e}")
+            time.sleep(1)
             machine.reset()
     except Exception as e:
         print(f"Unexpected error: {e}")
+        time.sleep(1)
         machine.reset()
 
