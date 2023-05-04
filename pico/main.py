@@ -1,7 +1,7 @@
 # This code was written by Juhyun Kim. 
 
 import gc
-from machine import Pin, I2C, ADC, PWM
+from machine import Pin, I2C, ADC, PWM, reset
 import network
 import time
 import urequests
@@ -172,6 +172,14 @@ while True:
         updatedTime = timeOfSeoul()
         # print(type(updatedTime))
         # print(updatedTime)
+        
+        # 현재 시간에서 시간과 분을 분리
+        current_hour = int(updatedTime[:2])
+        current_minute = int(updatedTime[3:5])
+        
+        # 짝수 시간의 정각이 되면 시스템을 리부트
+        if current_hour % 2 == 0 and current_minute == 0:
+            reset()
 
         # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
         print("Status Check")
@@ -272,8 +280,8 @@ while True:
         gc.collect()
     
     except OSError as e:
-        if e.args[0] in (103, 104):
-            print(f"Connection error {e.args[0]}. Rebooting Raspberry Pi Pico W...")
+        if e.args[0] in (103,104):
+            print("Connection aborted. Rebooting Raspberry Pi Pico W...")
             machine.reset()
         else:
             print(f"Unexpected OSError: {e}")
@@ -281,3 +289,4 @@ while True:
     except Exception as e:
         print(f"Unexpected error: {e}")
         machine.reset()
+
