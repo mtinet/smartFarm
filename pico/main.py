@@ -1,7 +1,7 @@
 # This code was written by Juhyun Kim. 
 
 import gc
-from machine import Pin, I2C, ADC, PWM, reset
+from machine import Pin, I2C, ADC, PWM
 import network
 import time
 import urequests
@@ -178,8 +178,13 @@ while True:
         current_minute = int(updatedTime[3:5])
         
         # 짝수 시간의 정각이 되면 시스템을 리부트
-        if current_hour % 2 == 0 and current_minute == 0:
-            reset()
+        if current_hour % 2 == 0 and current_minute == 9:
+            # 실시간으로 확인된 각 객체 값을 딕셔너리에 넣기
+            myobj = {
+                'rebootedTime': updatedTime
+                }
+            urequests.patch(url+"smartFarm.json", json = myobj).json()
+            machine.reset()
 
         # 읽어온 RTDB값과 센서 값 콘솔에 출력하기
         print("Status Check")
