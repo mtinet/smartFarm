@@ -8,7 +8,7 @@ let fanStatus = Boolean(false);
 let ledStatus = Boolean(false);
 
 // Firebase 접근 정보
-var config = {
+var firebaseConfig = {
   apiKey: "AIzaSyA4JNrHtS9pc6QaW8dtwATWhUhs0Ni8OBI",
   authDomain: "smartfarm-f867f.firebaseapp.com",
   databaseURL: "https://smartfarm-f867f-default-rtdb.firebaseio.com",
@@ -18,7 +18,7 @@ var config = {
   appId: "1:605663694333:web:ae528fa94efc794d285d94",
   measurementId: "G-9C54BH4QG4"
 };
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 database = firebase.database();
 
 // Firebase 정보 가져오기
