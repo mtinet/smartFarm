@@ -153,7 +153,7 @@ while True:
     humidityValue = round(sensor.relative_humidity) # 습도센서
     lightValue = round(100-((light.read_u16()/65535) * 100)) # 조도센서 값 읽어오기
     temperatureValue = round(sensor.temperature) # 온도센서 
-    moistureValue = round(analog_valueV.read_u16()/65535*100) # 수분센서 값 읽어오기
+    moistureValue = round(moisture.read_u16()/65535*100) # 수분센서 값 읽어오기
     
     # 현재시간 가져오기
     updatedTime = timeOfSeoul()
