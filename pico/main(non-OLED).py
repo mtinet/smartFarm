@@ -1,11 +1,10 @@
-# This code was written by Juhyun Kim.  
-
 from machine import Pin, I2C, ADC
 import network
 import time
 import urequests
 import random
 import ahtx0
+
 
 # 이메일, 위도, 경도 표시하기(자신의 스마트팜 위치를 검색해서 넣어주세요.)
 nickname = 'mtinet'      # 닉네임 변수를 자신만의 닉네임으로 수정하세요.
@@ -22,7 +21,8 @@ mapUrl = "https://smartfarmlocation-default-rtdb.firebaseio.com/"
 led = Pin(1, Pin.OUT) # 생장 LED제어 핀
 fan = Pin(5, Pin.OUT) # 팬 제어
 moisture = ADC(26) # 수분 감지
-light = ADC(27) # 조도 감지
+temperature = ADC(27) # 온도 감지
+light = ADC(28) # 조도 감지
 
 # 온도, 습도 센서 설정 
 i2cTH = I2C(1, scl=Pin(15), sda=Pin(14), freq=200000) 
@@ -100,7 +100,7 @@ while True:
     humidityValue = round(sensor.relative_humidity) # 습도센서
     lightValue = round((light.read_u16()/65535) * 100) # 조도센서 값 읽어오기
     temperatureValue = round(sensor.temperature) # 온도센서 
-    moistureValue = round((1 - moisture.read_u16()/65535) * 100) # 수분센서 값 읽어오기
+    moistureValue = round(analog_valueV.read_u16()/65535*100) # 수분센서 값 읽어오기
     
     # 현재시간 가져오기
     updatedTime = timeOfSeoul()
