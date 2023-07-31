@@ -13,3 +13,5 @@ led.on()
 sleep(0.2)
 led.off()
 sleep(0.2)
+
+import main
