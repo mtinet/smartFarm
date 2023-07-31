@@ -3,7 +3,6 @@
 import network
 import time
 import urequests
-from timezoneChange import timeOfSeoul
 
 # 와이파이 연결하기
 wlan = network.WLAN(network.STA_IF)
