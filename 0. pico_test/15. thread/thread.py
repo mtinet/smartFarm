@@ -1,3 +1,4 @@
+# This code was written by Juhyun Kim. 
 import time
 import machine
 from machine import Pin
