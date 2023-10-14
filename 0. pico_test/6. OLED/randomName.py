@@ -5,7 +5,7 @@ from ssd1306 import SSD1306_I2C
 import random
 import time
 
-i2c=I2C(0,sda=Pin(0), scl=Pin(1), freq=100000)
+i2c=I2C(0, sda=Pin(16), scl=Pin(17), freq=400000)
 print("I2C : " + str(i2c))
 oled = SSD1306_I2C(128, 64, i2c)
 
