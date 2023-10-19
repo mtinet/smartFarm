@@ -4,6 +4,7 @@ import time
 import network
 import gc
 from timezoneChange import timeOfSeoul
+import micropython
 
 SSID = "U+Net454C"
 password = "DDAE014478"
@@ -34,18 +35,21 @@ while True:
         light_value = int(light.read_u16()/16)
         light_value = int(100-(light_value*100/4096))
         updatedTime = timeOfSeoul()
+        print(updatedTime)
 
         response = urequests.patch(url + "smartFarm.json", json={'light': light_value, 'updatedTime': updatedTime})
-
-        if light_value > 1500:
+        # print(micropython.mem_info(1))
+        
+        if light_value < 50:
             led.value(1)
         else:
             led.value(0)
 
-        time.sleep(3)
+        time.sleep(5)
         gc.collect()
     except Exception as e:
         print("Error occurred:", e)
         gc.collect()
         continue
+
 
