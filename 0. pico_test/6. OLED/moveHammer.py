@@ -1,3 +1,5 @@
+# This code was written by Juhyun Kim.
+
 from machine import Pin, I2C
 from ssd1306 import SSD1306_I2C
 import framebuf
@@ -12,3 +14,7 @@ while True:
     for i in range(-64,128):
         oled.blit(fb,i,0)
         oled.show()
+
+
+
+
