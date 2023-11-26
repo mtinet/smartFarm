@@ -7,7 +7,7 @@ import framebuf
 import machine
 import utime
 
-sensor_temp = machine.ADC(28)
+sensor_temp = machine.ADC(26)
 conversion_factor = 3.3 / (65535)
 
 WIDTH  = 128                                            # oled display width
